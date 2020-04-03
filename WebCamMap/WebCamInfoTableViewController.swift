@@ -9,6 +9,10 @@
 import UIKit
 
 class WebCamInfoTableViewController: UITableViewController {
+    
+    
+    // Initializing webCams dictionary.
+    var webCams = [String: Any]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +33,17 @@ class WebCamInfoTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return webCams.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "webCamCell", for: indexPath)
+        
+        if let webCamCell = cell as? WebCamTableViewCell {
+            webCamCell.webCamTitle.text = "jaa"
+            webCamCell.webCamImage = nil
+        }
 
         // Configure the cell...
 
