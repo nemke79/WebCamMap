@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="owd-9e-bN3">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Web Cam Map View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="WebCamMapViewController" customModule="WebCamMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zef-T7-x9o">
+                                <rect key="frame" x="20" y="88" width="374" height="448"/>
+                            </mapView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="O98-Bf-jfE">
+                                <rect key="frame" x="20" y="544" width="374" height="318"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cityName" textLabel="MWQ-m9-1IZ" style="IBUITableViewCellStyleDefault" id="VjO-qF-7TT">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VjO-qF-7TT" id="c94-48-Wfm">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MWQ-m9-1IZ">
+                                                    <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="zef-T7-x9o" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.5" id="5Wi-6q-Aaf"/>
+                            <constraint firstItem="O98-Bf-jfE" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="CdK-1f-n4W"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zef-T7-x9o" secondAttribute="trailing" constant="20" id="IDZ-yX-4kV"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="O98-Bf-jfE" secondAttribute="trailing" constant="20" id="PbG-6l-A7F"/>
+                            <constraint firstItem="O98-Bf-jfE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="TVg-aO-d6l"/>
+                            <constraint firstItem="zef-T7-x9o" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="h1o-Mq-wDP"/>
+                            <constraint firstItem="zef-T7-x9o" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="huG-qP-vxD"/>
+                            <constraint firstItem="O98-Bf-jfE" firstAttribute="top" secondItem="zef-T7-x9o" secondAttribute="bottom" constant="8" id="rcY-FA-Kyf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="418-OZ-zp9"/>
+                    <connections>
+                        <outlet property="citiesTableView" destination="O98-Bf-jfE" id="Fra-dV-X2H"/>
+                        <outlet property="mapView" destination="zef-T7-x9o" id="f35-a4-dyY"/>
+                        <segue destination="C0N-Hf-53v" kind="show" identifier="showWebCamInfo" id="4z7-tQ-FkW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="831.88405797101461" y="75.669642857142847"/>
+        </scene>
+        <!--Web Cam Info Table View Controller-->
+        <scene sceneID="Gn3-gs-UwJ">
+            <objects>
+                <tableViewController id="C0N-Hf-53v" customClass="WebCamInfoTableViewController" customModule="WebCamMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="xuj-C8-daT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="66" id="zPr-Jv-PHU" customClass="WebCamTableViewCell" customModule="WebCamMap" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="66"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zPr-Jv-PHU" id="5Ge-SD-m8w">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7bm-GB-6y4">
+                                            <rect key="frame" x="11" y="1" width="64" height="64"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="64" id="ihJ-xP-unf"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WebCamTitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fnr-G3-TAU">
+                                            <rect key="frame" x="83" y="17" width="309" height="32"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Fnr-G3-TAU" firstAttribute="leading" secondItem="7bm-GB-6y4" secondAttribute="trailing" constant="8" id="4zj-BS-6d5"/>
+                                        <constraint firstAttribute="bottom" secondItem="7bm-GB-6y4" secondAttribute="bottom" constant="1" id="EgK-p6-5Xh"/>
+                                        <constraint firstItem="Fnr-G3-TAU" firstAttribute="top" secondItem="5Ge-SD-m8w" secondAttribute="topMargin" constant="6" id="bIF-tl-AQN"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Fnr-G3-TAU" secondAttribute="trailing" constant="2" id="kPA-lT-qbG"/>
+                                        <constraint firstItem="7bm-GB-6y4" firstAttribute="leading" secondItem="5Ge-SD-m8w" secondAttribute="leading" constant="11" id="lvW-yP-rof"/>
+                                        <constraint firstItem="7bm-GB-6y4" firstAttribute="top" secondItem="5Ge-SD-m8w" secondAttribute="top" constant="1" id="sSB-jz-FAW"/>
+                                        <constraint firstItem="Fnr-G3-TAU" firstAttribute="centerY" secondItem="5Ge-SD-m8w" secondAttribute="centerY" id="zCt-Xz-svm"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="webCamImage" destination="7bm-GB-6y4" id="37v-3X-4SV"/>
+                                    <outlet property="webCamTitle" destination="Fnr-G3-TAU" id="z6P-GP-27W"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="C0N-Hf-53v" id="xFp-mS-krh"/>
+                            <outlet property="delegate" destination="C0N-Hf-53v" id="IXJ-Em-d95"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Ihd-aG-idn"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OZi-Cv-Y72" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1679.7101449275362" y="-325.44642857142856"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="kgG-Z6-6wi">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="owd-9e-bN3" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Pfh-AA-0Gl">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="cch-l5-XNS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xc5-K4-Qa9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-78.260869565217391" y="75.669642857142847"/>
+        </scene>
+    </scenes>
+</document>
