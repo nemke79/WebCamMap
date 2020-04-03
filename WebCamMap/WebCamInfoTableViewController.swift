@@ -12,7 +12,8 @@ class WebCamInfoTableViewController: UITableViewController {
     
     
     // Initializing webCams dictionary.
-    var webCams = [String: Any]()
+    var webCams = [Any]()
+    var names = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
