@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WebCamTableViewCell: UITableViewCell {
+class WebCamInfoTableViewCell: UITableViewCell {
     
     @IBOutlet weak var webCamImage: UIImageView!
     @IBOutlet weak var webCamTitle: UILabel!

@@ -41,7 +41,7 @@ class WebCamInfoTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "webCamCell", for: indexPath)
         
-        if let webCamCell = cell as? WebCamTableViewCell {
+        if let webCamCell = cell as? WebCamInfoTableViewCell {
             webCamCell.webCamTitle.text = "jaa"
             webCamCell.webCamImage = nil
         }
