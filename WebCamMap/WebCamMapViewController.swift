@@ -100,14 +100,20 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    private var font: UIFont {
+        return UIFontMetrics(forTextStyle: .body).scaledFont(for: UIFont.preferredFont(forTextStyle: .body).withSize(18.0))
+        }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrayOfPinsNames.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cityName", for: indexPath)
-        
-        cell.textLabel?.text = arrayOfPinsNames[indexPath.row]
+
+        let attrText = NSAttributedString(string: arrayOfPinsNames[indexPath.row], attributes: [.font: font])
+
+        cell.textLabel?.attributedText = attrText
         
         return cell
     }

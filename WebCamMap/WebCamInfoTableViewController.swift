@@ -17,7 +17,7 @@ class WebCamInfoTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+   
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -36,13 +36,18 @@ class WebCamInfoTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return webCams.count
     }
+    
+    private var font: UIFont {
+        return UIFontMetrics(forTextStyle: .body).scaledFont(for: UIFont.preferredFont(forTextStyle: .body).withSize(18.0))
+      }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "webCamCell", for: indexPath)
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "webCamInfoCell", for: indexPath)
+    
         if let webCamCell = cell as? WebCamInfoTableViewCell {
-            webCamCell.webCamTitle.text = "jaa"
+                      let attrText = NSAttributedString(string: "jaaa", attributes: [.font: font])
+            webCamCell.webCamTitle.attributedText = attrText
             webCamCell.webCamImage = nil
         }
 
