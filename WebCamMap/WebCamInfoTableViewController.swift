@@ -17,8 +17,6 @@ class WebCamInfoTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-   
-        tableView.reloadData()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -30,7 +28,7 @@ class WebCamInfoTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,9 +42,9 @@ class WebCamInfoTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "webCamInfoCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WebCamInfoCell", for: indexPath)
     
-                      let attrText = NSAttributedString(string: "jaaa", attributes: [.font: font])
+        let attrText = NSAttributedString(string: "jeeeee", attributes: [.font: font])
         cell.textLabel?.attributedText = attrText
    //     cell.imageView.image = ?
 
