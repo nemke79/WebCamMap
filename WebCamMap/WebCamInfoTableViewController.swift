@@ -17,7 +17,8 @@ class WebCamInfoTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(webCams[0])
+       
+        tableView.reloadData()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -48,6 +49,7 @@ class WebCamInfoTableViewController: UITableViewController {
    //     let attrText = NSAttributedString(string: names, attributes: [.font: font])
         cell.textLabel?.text = names
         cell.detailTextLabel?.text = webCams[indexPath.row].title
+        
         let imageURL:URL = URL(string: webCams[indexPath.row].image)!
         let data = NSData(contentsOf: imageURL)
         cell.imageView!.image = UIImage(data: data! as Data)
@@ -56,6 +58,11 @@ class WebCamInfoTableViewController: UITableViewController {
         // Configure the cell...
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let url = URL(string: webCams[indexPath.row].link)!
+        UIApplication.shared.open(url, options: [:])
     }
     
 

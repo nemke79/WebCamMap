@@ -156,7 +156,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-    func requestWebCam(completion: @escaping (Any?, Bool) -> ()) {
+      func requestWebCam(completion: @escaping (Any?, Bool) -> ()) {
         let url = URL(string: baseURL)
         
         let dataTask = URLSession.shared.dataTask(with: url!) { (data, response, error) in
@@ -178,17 +178,21 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
             let jsonData = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]
             
             let info = jsonData
-            let result = info!["result"] as! [String: Any]
-            let jsonWebCams = result["webcams"] as! [Any]
+            let result = info!["result"] as! [String: AnyObject]
+            let jsonWebCams = result["webcams"] as! [AnyObject]
             
             for jsonWebCam in jsonWebCams {
-                let webCamInfo = WebCamInfo()
+                var webCamInfo = WebCamInfo()
                 
+                let imageDict = jsonWebCam["image"] as! [String: AnyObject]
+                let currentDict = imageDict["current"] as! [String: AnyObject]
+                webCamInfo.image = currentDict["icon"] as! String
                 
+                webCamInfo.title = jsonWebCam["title"] as! String
                 
-                
-                
-                
+                let playerDict = jsonWebCam["player"] as! [String: AnyObject]
+                let dayDict = playerDict["day"] as! [String: AnyObject]
+                webCamInfo.link = dayDict["embed"] as! String
                 
                 webCamsInfo.append(webCamInfo)
             }
