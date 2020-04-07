@@ -17,6 +17,7 @@
 		DF01E4A22434C897005F9117 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF01E4A12434C897005F9117 /* Info.plist */; };
 		DF01E4A42437435C005F9117 /* WebCamInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF01E4A32437435C005F9117 /* WebCamInfoTableViewController.swift */; };
 		DF4BE61A2438E29D00125E6E /* WebCamInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF01E4A32437435C005F9117 /* WebCamInfoTableViewController.swift */; };
+		DF8E910F243CC39C00CD2C69 /* WebCamInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8E910E243CC39C00CD2C69 /* WebCamInfo.swift */; };
 		DFABF2292437A0520019B04E /* WebCamMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABF2282437A0520019B04E /* WebCamMapViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		DF01E49F2434C3A6005F9117 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DF01E4A12434C897005F9117 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../OpenWeatherNemke/OpenWeatherNemke/Info.plist; sourceTree = "<group>"; };
 		DF01E4A32437435C005F9117 /* WebCamInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCamInfoTableViewController.swift; sourceTree = "<group>"; };
+		DF8E910E243CC39C00CD2C69 /* WebCamInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCamInfo.swift; sourceTree = "<group>"; };
 		DFABF2282437A0520019B04E /* WebCamMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCamMapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,6 +92,7 @@
 				DF01E4782434C29A005F9117 /* SceneDelegate.swift */,
 				DF01E49F2434C3A6005F9117 /* Main.storyboard */,
 				DF01E4A32437435C005F9117 /* WebCamInfoTableViewController.swift */,
+				DF8E910E243CC39C00CD2C69 /* WebCamInfo.swift */,
 				DF01E4822434C29F005F9117 /* Assets.xcassets */,
 				DF01E4842434C29F005F9117 /* LaunchScreen.storyboard */,
 				DF01E4872434C29F005F9117 /* Info.plist */,
@@ -213,6 +216,7 @@
 				DF01E4792434C29A005F9117 /* SceneDelegate.swift in Sources */,
 				DF01E4A42437435C005F9117 /* WebCamInfoTableViewController.swift in Sources */,
 				DFABF2292437A0520019B04E /* WebCamMapViewController.swift in Sources */,
+				DF8E910F243CC39C00CD2C69 /* WebCamInfo.swift in Sources */,
 				DF01E4812434C29A005F9117 /* WebCamMap.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -26,8 +26,8 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var baseURL = String()
     
-    var webCamsInfo = [Any]()
-    
+    var webCamsInfo = [WebCamInfo]()
+
     // Adding outlet for map
     @IBOutlet weak var mapView: MKMapView! {
         didSet {
@@ -179,11 +179,19 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
             
             let info = jsonData
             let result = info!["result"] as! [String: Any]
-            let webCams = result["webcams"] as! [Any]
+            let jsonWebCams = result["webcams"] as! [Any]
             
-                DispatchQueue.main.async {
-                    self.webCamsInfo = webCams
-                }
+            for jsonWebCam in jsonWebCams {
+                let webCamInfo = WebCamInfo()
+                
+                
+                
+                
+                
+                
+                
+                webCamsInfo.append(webCamInfo)
+            }
         } catch let error as NSError {
             print("Decoding error \(error.localizedDescription)")
         }

@@ -12,11 +12,12 @@ class WebCamInfoTableViewController: UITableViewController {
     
     
     // Initializing webCams dictionary.
-    var webCams = [Any]()
+    var webCams = [WebCamInfo]()
     var names = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(webCams[0])
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -44,9 +45,13 @@ class WebCamInfoTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WebCamInfoCell", for: indexPath)
     
-        let attrText = NSAttributedString(string: "jeeeee", attributes: [.font: font])
-        cell.textLabel?.attributedText = attrText
-   //     cell.imageView.image = ?
+   //     let attrText = NSAttributedString(string: names, attributes: [.font: font])
+        cell.textLabel?.text = names
+        cell.detailTextLabel?.text = webCams[indexPath.row].title
+        let imageURL:URL = URL(string: webCams[indexPath.row].image)!
+        let data = NSData(contentsOf: imageURL)
+        cell.imageView!.image = UIImage(data: data! as Data)
+  
 
         // Configure the cell...
 
