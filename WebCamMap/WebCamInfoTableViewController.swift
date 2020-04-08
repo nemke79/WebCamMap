@@ -15,10 +15,15 @@ class WebCamInfoTableViewController: UITableViewController {
     var webCams = [WebCamInfo]()
     var names = String()
 
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        tableView.reloadData()
+        
+        spinner?.startAnimating()
+        
+        self.title = names
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -39,16 +44,15 @@ class WebCamInfoTableViewController: UITableViewController {
     }
     
     private var font: UIFont {
-        return UIFontMetrics(forTextStyle: .body).scaledFont(for: UIFont.preferredFont(forTextStyle: .body).withSize(18.0))
+        return UIFontMetrics(forTextStyle: .body).scaledFont(for: UIFont.preferredFont(forTextStyle: .body).withSize(16.0))
       }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WebCamInfoCell", for: indexPath)
     
-   //     let attrText = NSAttributedString(string: names, attributes: [.font: font])
-        cell.textLabel?.text = names
-        cell.detailTextLabel?.text = webCams[indexPath.row].title
+        let attrText = NSAttributedString(string: webCams[indexPath.row].title, attributes: [.font: font])
+        cell.textLabel?.attributedText = attrText
         
         let imageURL:URL = URL(string: webCams[indexPath.row].image)!
         let data = NSData(contentsOf: imageURL)
@@ -64,7 +68,6 @@ class WebCamInfoTableViewController: UITableViewController {
         let url = URL(string: webCams[indexPath.row].link)!
         UIApplication.shared.open(url, options: [:])
     }
-    
 
     /*
     // Override to support conditional editing of the table view.

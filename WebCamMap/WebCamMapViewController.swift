@@ -27,7 +27,11 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     var baseURL = String()
     
     var webCamsInfo = [WebCamInfo]()
-
+    
+    var webCamInfo = WebCamInfo()
+    
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
     // Adding outlet for map
     @IBOutlet weak var mapView: MKMapView! {
         didSet {
@@ -47,6 +51,8 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        spinner?.stopAnimating()
+        
         citiesTableView.dataSource = self
         citiesTableView.delegate = self
         mapView.delegate = self
@@ -63,6 +69,11 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        webCamsInfo.removeAll()
     }
     
     // Gesture for adding pins to map
@@ -102,7 +113,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     
     private var font: UIFont {
         return UIFontMetrics(forTextStyle: .body).scaledFont(for: UIFont.preferredFont(forTextStyle: .body).withSize(18.0))
-        }
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrayOfPinsNames.count
@@ -110,9 +121,9 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cityName", for: indexPath)
-
+        
         let attrText = NSAttributedString(string: arrayOfPinsNames[indexPath.row], attributes: [.font: font])
-
+        
         cell.textLabel?.attributedText = attrText
         
         return cell
@@ -132,6 +143,8 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         baseURL = "https://api.windy.com/api/webcams/v2/list/nearby=\(arrayOfPinsCLLocations[indexPath.row].coordinate.latitude),\(arrayOfPinsCLLocations[indexPath.row].coordinate.longitude),20/orderby=distance/limit=50?show=webcams:player,image&key=BWCdRgohrnZPoVqrPYWcyU7N1sbR4ko4"
         
+        spinner?.startAnimating()
+        
         requestWebCam{ (data, success) in
             
             guard let _ = data else {return}
@@ -148,6 +161,8 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                         webCamInfoVC.names = arrayOfPinsNames[indexPath.row]
                         
                         webCamInfoVC.webCams = self.webCamsInfo
+                        
+                         spinner?.stopAnimating()
                     }
                 }
                 
@@ -156,9 +171,9 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-      func requestWebCam(completion: @escaping (Any?, Bool) -> ()) {
+    func requestWebCam(completion: @escaping (Any?, Bool) -> ()) {
         let url = URL(string: baseURL)
-        
+
         let dataTask = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             self.fetchData(data: data, response: response!, error: error, completion: completion)
             if error == nil {
@@ -182,19 +197,23 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
             let jsonWebCams = result["webcams"] as! [AnyObject]
             
             for jsonWebCam in jsonWebCams {
-                var webCamInfo = WebCamInfo()
                 
                 let imageDict = jsonWebCam["image"] as! [String: AnyObject]
                 let currentDict = imageDict["current"] as! [String: AnyObject]
-                webCamInfo.image = currentDict["icon"] as! String
-                
-                webCamInfo.title = jsonWebCam["title"] as! String
                 
                 let playerDict = jsonWebCam["player"] as! [String: AnyObject]
                 let dayDict = playerDict["day"] as! [String: AnyObject]
-                webCamInfo.link = dayDict["embed"] as! String
                 
-                webCamsInfo.append(webCamInfo)
+                DispatchQueue.main.async {
+                    
+                    self.webCamInfo.link = dayDict["embed"] as! String
+                    
+                    self.webCamInfo.image = currentDict["thumbnail"] as! String
+                    
+                    self.webCamInfo.title = jsonWebCam["title"] as! String
+                    
+                    self.webCamsInfo.append(self.webCamInfo)
+                }
             }
         } catch let error as NSError {
             print("Decoding error \(error.localizedDescription)")

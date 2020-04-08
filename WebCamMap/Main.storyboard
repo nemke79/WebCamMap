@@ -41,11 +41,17 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="adg-lT-OgH">
+                                <rect key="frame" x="188.5" y="596" width="37" height="37"/>
+                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="zef-T7-x9o" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.5" id="5Wi-6q-Aaf"/>
+                            <constraint firstItem="adg-lT-OgH" firstAttribute="top" secondItem="zef-T7-x9o" secondAttribute="bottom" constant="60" id="CNI-WI-Soq"/>
                             <constraint firstItem="O98-Bf-jfE" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="CdK-1f-n4W"/>
+                            <constraint firstItem="adg-lT-OgH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ewb-jE-t9B"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zef-T7-x9o" secondAttribute="trailing" constant="20" id="IDZ-yX-4kV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="O98-Bf-jfE" secondAttribute="trailing" constant="20" id="PbG-6l-A7F"/>
                             <constraint firstItem="O98-Bf-jfE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="TVg-aO-d6l"/>
@@ -59,6 +65,7 @@
                     <connections>
                         <outlet property="citiesTableView" destination="O98-Bf-jfE" id="Fra-dV-X2H"/>
                         <outlet property="mapView" destination="zef-T7-x9o" id="f35-a4-dyY"/>
+                        <outlet property="spinner" destination="adg-lT-OgH" id="mW5-Pj-k0v"/>
                         <segue destination="A3z-qF-A62" kind="show" identifier="showWebCamInfo" id="DfI-2J-QAN"/>
                     </connections>
                 </viewController>
@@ -93,34 +100,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WebCamInfoCell" textLabel="uq8-KM-O4g" detailTextLabel="IHh-6d-fsK" imageView="BhC-19-p9y" style="IBUITableViewCellStyleSubtitle" id="xI6-ck-Mj5">
-                                <rect key="frame" x="0.0" y="28" width="414" height="55.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WebCamInfoCell" textLabel="uq8-KM-O4g" imageView="BhC-19-p9y" style="IBUITableViewCellStyleDefault" id="xI6-ck-Mj5">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xI6-ck-Mj5" id="fPS-MX-qu8">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="55.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uq8-KM-O4g">
-                                            <rect key="frame" x="59" y="10" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="59" y="0.0" width="335" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IHh-6d-fsK">
-                                            <rect key="frame" x="59" y="31.5" width="44" height="14.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="camera" catalog="system" id="BhC-19-p9y">
-                                            <rect key="frame" x="20" y="18" width="24" height="18"/>
+                                            <rect key="frame" x="20" y="12" width="24" height="18"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.8186762541" green="0.9017027165" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
