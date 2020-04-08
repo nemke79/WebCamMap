@@ -114,7 +114,7 @@
                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="camera" catalog="system" id="BhC-19-p9y">
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" image="camera" catalog="system" id="BhC-19-p9y">
                                             <rect key="frame" x="20" y="12" width="24" height="18"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>

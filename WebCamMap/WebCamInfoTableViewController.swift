@@ -14,6 +14,8 @@ class WebCamInfoTableViewController: UITableViewController {
     // Initializing webCams dictionary.
     var webCams = [WebCamInfo]()
     var names = String()
+    
+    var heightForHeader = 5
 
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
@@ -35,12 +37,16 @@ class WebCamInfoTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return webCams.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return webCams.count
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat(heightForHeader)
     }
     
     private var font: UIFont {
@@ -51,12 +57,17 @@ class WebCamInfoTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WebCamInfoCell", for: indexPath)
     
-        let attrText = NSAttributedString(string: webCams[indexPath.row].title, attributes: [.font: font])
+        let attrText = NSAttributedString(string: webCams[indexPath.section].title, attributes: [.font: font])
         cell.textLabel?.attributedText = attrText
         
-        let imageURL:URL = URL(string: webCams[indexPath.row].image)!
+        let imageURL:URL = URL(string: webCams[indexPath.section].image)!
         let data = NSData(contentsOf: imageURL)
         cell.imageView!.image = UIImage(data: data! as Data)
+        
+        cell.imageView?.layer.borderWidth = 1.0
+        cell.imageView?.layer.borderColor = UIColor.darkGray.cgColor
+        
+        cell.imageView?.layer.cornerRadius = 10
   
 
         // Configure the cell...
@@ -65,7 +76,7 @@ class WebCamInfoTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let url = URL(string: webCams[indexPath.row].link)!
+        let url = URL(string: webCams[indexPath.section].link)!
         UIApplication.shared.open(url, options: [:])
     }
 
