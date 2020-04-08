@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import UIKit
 
 struct WebCamInfo {
-    var image: String = ""
+    var image = UIImage()
     var title: String = ""
     var link: String = ""
 }

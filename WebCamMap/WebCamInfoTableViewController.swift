@@ -60,13 +60,13 @@ class WebCamInfoTableViewController: UITableViewController {
         let attrText = NSAttributedString(string: webCams[indexPath.section].title, attributes: [.font: font])
         cell.textLabel?.attributedText = attrText
         
-        let imageURL:URL = URL(string: webCams[indexPath.section].image)!
-        let data = NSData(contentsOf: imageURL)
-        cell.imageView!.image = UIImage(data: data! as Data)
-        
+//        let imageURL:URL = URL(string: webCams[indexPath.section].image)!
+//        let data = NSData(contentsOf: imageURL)
+        cell.imageView!.image = webCams[indexPath.section].image
+
         cell.imageView?.layer.borderWidth = 1.0
         cell.imageView?.layer.borderColor = UIColor.darkGray.cgColor
-        
+
         cell.imageView?.layer.cornerRadius = 10
   
 

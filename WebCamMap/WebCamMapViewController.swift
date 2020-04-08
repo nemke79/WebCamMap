@@ -204,11 +204,16 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                 let playerDict = jsonWebCam["player"] as! [String: AnyObject]
                 let dayDict = playerDict["day"] as! [String: AnyObject]
                 
+                let imageURL = URL(string: currentDict["thumbnail"] as! String)!
+                let data = NSData(contentsOf: imageURL)
+                
+                let image = UIImage(data: data! as Data)
+                
                 DispatchQueue.main.async {
                     
                     self.webCamInfo.link = dayDict["embed"] as! String
                     
-                    self.webCamInfo.image = currentDict["thumbnail"] as! String
+                    self.webCamInfo.image = image!
                     
                     self.webCamInfo.title = jsonWebCam["title"] as! String
                     
