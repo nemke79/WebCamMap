@@ -143,6 +143,9 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         baseURL = "https://api.windy.com/api/webcams/v2/list/nearby=\(arrayOfPinsCLLocations[indexPath.row].coordinate.latitude),\(arrayOfPinsCLLocations[indexPath.row].coordinate.longitude),20/orderby=distance/limit=50?show=webcams:player,image&key=BWCdRgohrnZPoVqrPYWcyU7N1sbR4ko4"
         
+        let viewRegion = MKCoordinateRegion(center: arrayOfPinsCLLocations[indexPath.row].coordinate, latitudinalMeters: 900000, longitudinalMeters: 900000)
+        mapView.setRegion(viewRegion, animated: false)
+        
         spinner?.startAnimating()
         
         requestWebCam{ (data, success) in
@@ -162,7 +165,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                         
                         webCamInfoVC.webCams = self.webCamsInfo
                         
-                         spinner?.stopAnimating()
+                        spinner?.stopAnimating()
                     }
                 }
                 
@@ -173,12 +176,22 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func requestWebCam(completion: @escaping (Any?, Bool) -> ()) {
         let url = URL(string: baseURL)
-
+        
         let dataTask = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             self.fetchData(data: data, response: response!, error: error, completion: completion)
-            if error == nil {
+            if error == nil, self.webCamsInfo.count > 0 {
                 DispatchQueue.main.async {
                     self.performSegue(withIdentifier: "showWebCamInfo", sender: self)
+                }
+            } else if error == nil, self.webCamsInfo.count == 0 {
+                DispatchQueue.main.async {
+                    self.spinner?.stopAnimating()
+                    let alert = UIAlertController(title: "Web Cams Info", message: "No web cameras nearby for this location.", preferredStyle: .alert)
+                    
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+                        return
+                    }))
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
             
