@@ -122,9 +122,12 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cityName", for: indexPath)
         
-        let attrText = NSAttributedString(string: arrayOfPinsNames[indexPath.row], attributes: [.font: font])
-        
-        cell.textLabel?.attributedText = attrText
+        if let cityNameCell = cell as? CityNameCell {
+            
+            let attrText = NSAttributedString(string: arrayOfPinsNames[indexPath.row], attributes: [.font: font])
+            
+            cityNameCell.cityName.attributedText = attrText
+        }
         
         return cell
     }
