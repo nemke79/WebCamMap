@@ -41,7 +41,10 @@
                                                         <constraint firstAttribute="width" constant="30" id="EUp-7V-qq3"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
-                                                    <state key="normal" image="suit.heart" catalog="system"/>
+                                                    <state key="normal" image="heart" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="favouriteButtonTapped:" destination="VjO-qF-7TT" eventType="touchUpInside" id="3ZA-lA-hws"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -154,6 +157,6 @@
     </scenes>
     <resources>
         <image name="camera" catalog="system" width="128" height="96"/>
-        <image name="suit.heart" catalog="system" width="128" height="109"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
     </resources>
 </document>

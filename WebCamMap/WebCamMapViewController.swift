@@ -9,8 +9,13 @@
 import UIKit
 import MapKit
 import CoreLocation
+import CoreData
 
 class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate {
+    
+    private var favouriteCities: [FavouriteCities]?
+    
+    let cityCell = CityNameCell()
     
     let locationManager = CLLocationManager()
     
@@ -18,17 +23,28 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var arrayOfPinsNames = [String]()
     
+    var arrayOfFavourites = [Bool]()
+    
     var arrayOfAnotations = [MKAnnotation]()
     
     private var currentLocation: CLLocation?
-    
-    let myPin = MKPointAnnotation()
     
     var baseURL = String()
     
     var webCamsInfo = [WebCamInfo]()
     
     var webCamInfo = WebCamInfo()
+    
+    //    @IBAction func favouriteButtonTapped(_ sender: Any) {
+    //        CityNameCell.actionBlock?()
+    //    }
+    
+    static var persistentContainer: NSPersistentContainer {
+        return (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+    }
+    
+    let context = persistentContainer.viewContext
+    
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
@@ -55,6 +71,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         
         citiesTableView.dataSource = self
         citiesTableView.delegate = self
+        citiesTableView.rowHeight = 44
         mapView.delegate = self
         mapView.mapType = .standard
         mapView.isZoomEnabled = true
@@ -69,12 +86,49 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation()
         }
+        
+        reloadDatabase()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         webCamsInfo.removeAll()
     }
+    
+    private func reloadDatabase() {
+        let request: NSFetchRequest<FavouriteCities> = FavouriteCities.fetchRequest()
+        
+        request.sortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: true)]
+        
+        favouriteCities = try? context.fetch(request)
+        
+        if favouriteCities!.count > 0 {
+            for favCity in favouriteCities! {
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = CLLocationCoordinate2D(latitude: favCity.latitude, longitude: favCity.longitude)
+                mapView.addAnnotation(annotation)
+                
+                arrayOfAnotations.append(annotation)
+                
+                let location = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
+                
+                self.arrayOfPinsNames.append(favCity.cityName!)
+                
+                self.arrayOfPinsCLLocations.append(location)
+                
+                self.arrayOfFavourites.append(favCity.isFavourite)
+                
+                self.citiesTableView.reloadData()
+                
+                let indexPath = NSIndexPath(row: self.arrayOfPinsNames.count-1, section: 0)
+                self.citiesTableView.scrollToRow(at: indexPath as IndexPath, at: .bottom, animated: true)
+            }
+        }
+        
+    }
+    
+    
+    
     
     // Gesture for adding pins to map
     
@@ -100,6 +154,8 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                 if let placemarks = placemarks, let placemark = placemarks.first {
                     self.arrayOfPinsNames.append("\(placemark.locality ?? placemark.name ?? placemark.country ?? placemark.ocean ?? "Unknown location") \(placemark.country ?? "")")
                     self.arrayOfPinsCLLocations.append(placemark.location!)
+                    
+                    self.arrayOfFavourites.append(false)
                     
                     self.citiesTableView.reloadData()
                     
@@ -127,6 +183,22 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
             let attrText = NSAttributedString(string: arrayOfPinsNames[indexPath.row], attributes: [.font: font])
             
             cityNameCell.cityName.attributedText = attrText
+            
+            if arrayOfFavourites[indexPath.row] == true {
+                cityNameCell.favouriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            } else {
+                cityNameCell.favouriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            }
+            
+            cityNameCell.actionBlock = {
+                if cityNameCell.favouriteButton.currentImage! == UIImage(systemName: "heart"){
+                    cityNameCell.favouriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                    FavouriteCities.addFavouriteCity(name: cityNameCell.cityName.text!, latitude: self.arrayOfAnotations[indexPath.row].coordinate.latitude, longitude: self.arrayOfAnotations[indexPath.row].coordinate.longitude, context: self.context)
+                } else if cityNameCell.favouriteButton.currentImage! == UIImage(systemName: "heart.fill") {
+                    cityNameCell.favouriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                    FavouriteCities.deleteFavouriteCity(matching: indexPath.row, into: self.context)
+                }
+            }
         }
         
         return cell
@@ -138,6 +210,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
             arrayOfAnotations.remove(at: indexPath.row)
             arrayOfPinsNames.remove(at: indexPath.row)
             arrayOfPinsCLLocations.remove(at: indexPath.row)
+            arrayOfFavourites.remove(at: indexPath.row)
             citiesTableView.deleteRows(at: [indexPath], with: .fade)
             citiesTableView.reloadData()
         }
@@ -249,32 +322,6 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
             if let userLocation = locations.last {
                 let viewRegion = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 2000, longitudinalMeters: 2000)
                 mapView.setRegion(viewRegion, animated: false)
-                
-                myPin.coordinate = userLocation.coordinate
-                
-                mapView.addAnnotation(myPin)
-                
-                arrayOfAnotations.append(myPin)
-                
-                let location = CLLocation(latitude: myPin.coordinate.latitude, longitude: myPin.coordinate.longitude)
-                
-                let geocoder = CLGeocoder()
-                geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
-                    // Process Response
-                    if let error = error {
-                        print("Unable to Reverse Geocode Location (\(error))")
-                    } else {
-                        if let placemarks = placemarks, let placemark = placemarks.first {
-                            
-                            self.arrayOfPinsNames.append("\(placemark.locality ?? placemark.name ?? placemark.country ?? placemark.ocean ?? "Unknown location") \(placemark.country ?? "")")
-                            self.arrayOfPinsCLLocations.append(placemark.location!)
-                            self.citiesTableView.reloadData()
-                            
-                            let indexPath = NSIndexPath(row: self.arrayOfPinsNames.count-1, section: 0)
-                            self.citiesTableView.scrollToRow(at: indexPath as IndexPath, at: .bottom, animated: true)
-                        }
-                    }
-                }
             }
         }
     }

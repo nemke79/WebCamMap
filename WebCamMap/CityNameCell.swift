@@ -14,6 +14,13 @@ class CityNameCell: UITableViewCell {
     
     @IBOutlet weak var favouriteButton: UIButton!
     
+    // For creating action on button tap inside cell
+      var actionBlock: (() -> Void)? = nil
+    
+    @IBAction func favouriteButtonTapped(_ sender: Any) {
+        actionBlock?()
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

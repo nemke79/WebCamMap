@@ -20,6 +20,7 @@
 		DF8E910F243CC39C00CD2C69 /* WebCamInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8E910E243CC39C00CD2C69 /* WebCamInfo.swift */; };
 		DF981054243F90C900953E92 /* CityNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF981053243F90C900953E92 /* CityNameCell.swift */; };
 		DFABF2292437A0520019B04E /* WebCamMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABF2282437A0520019B04E /* WebCamMapViewController.swift */; };
+		DFB057032441CFE300F1F900 /* FavouriteCities.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB057022441CFE300F1F900 /* FavouriteCities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		DF8E910E243CC39C00CD2C69 /* WebCamInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCamInfo.swift; sourceTree = "<group>"; };
 		DF981053243F90C900953E92 /* CityNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityNameCell.swift; sourceTree = "<group>"; };
 		DFABF2282437A0520019B04E /* WebCamMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCamMapViewController.swift; sourceTree = "<group>"; };
+		DFB057022441CFE300F1F900 /* FavouriteCities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				DFABF2282437A0520019B04E /* WebCamMapViewController.swift */,
+				DFB057022441CFE300F1F900 /* FavouriteCities.swift */,
 				DF981053243F90C900953E92 /* CityNameCell.swift */,
 				DF01E4762434C29A005F9117 /* AppDelegate.swift */,
 				DF01E4782434C29A005F9117 /* SceneDelegate.swift */,
@@ -221,6 +224,7 @@
 				DF01E4A42437435C005F9117 /* WebCamInfoTableViewController.swift in Sources */,
 				DFABF2292437A0520019B04E /* WebCamMapViewController.swift in Sources */,
 				DF8E910F243CC39C00CD2C69 /* WebCamInfo.swift in Sources */,
+				DFB057032441CFE300F1F900 /* FavouriteCities.swift in Sources */,
 				DF01E4812434C29A005F9117 /* WebCamMap.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
