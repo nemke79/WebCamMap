@@ -3,11 +3,10 @@
     <entity name="FavouriteCities" representedClassName=".FavouriteCities" syncable="YES" codeGenerationType="category">
         <attribute name="cityName" optional="YES" attributeType="String"/>
         <attribute name="dateCreated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="isFavourite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="FavouriteCities" positionX="-63" positionY="-18" width="128" height="118"/>
+        <element name="FavouriteCities" positionX="-63" positionY="-18" width="128" height="103"/>
     </elements>
 </model>

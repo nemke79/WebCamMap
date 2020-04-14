@@ -16,7 +16,6 @@ class FavouriteCities: NSManagedObject {
         favouriteCity.cityName = name
         favouriteCity.latitude = latitude
         favouriteCity.longitude = longitude
-        favouriteCity.isFavourite = true
         favouriteCity.dateCreated = Date()
     }
     
@@ -28,5 +27,5 @@ class FavouriteCities: NSManagedObject {
         if favouriteCity!.count > 0 {
             context.delete(favouriteCity![item])
         }
-}
+    }
 }
