@@ -192,29 +192,33 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                 cityNameCell.favouriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
             }
             
+            // Action when user taps favourite button on cell.
+            
             cityNameCell.actionBlock = {
                 if cityNameCell.favouriteButton.currentImage! == UIImage(systemName: "heart"){
                     for value in self.arrayOfFavourites {
-                                      if value == true {
-                                          self.counter += 1
-                                      } else {
-                                          break
-                                      }
-                                  }
+                        if value == true {
+                            self.counter += 1
+                        } else {
+                            break
+                        }
+                    }
                     cityNameCell.favouriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
                     FavouriteCities.addFavouriteCity(name: cityNameCell.cityName.text!, latitude: self.arrayOfAnotations[indexPath.row].coordinate.latitude, longitude: self.arrayOfAnotations[indexPath.row].coordinate.longitude, context: self.context)
-                        self.arrayOfFavourites[indexPath.row] = true
+                    self.arrayOfFavourites[indexPath.row] = true
                     
-                     try? self.context.save()
+                    try? self.context.save()
+                    
+                    // Move row to the top of tableview when its added to favourites, below other favourites. Otherwise, remove it from favourites and put it below favourites.
                     
                     self.citiesTableView.beginUpdates()
-
+                    
                     self.citiesTableView.moveRow(at: indexPath, to: IndexPath(row: self.counter, section: 0))
                     self.arrayOfFavourites.insert(self.arrayOfFavourites.remove(at: indexPath.row), at: self.counter)
                     self.arrayOfPinsNames.insert(self.arrayOfPinsNames.remove(at: indexPath.row), at: self.counter)
                     self.arrayOfAnotations.insert(self.arrayOfAnotations.remove(at: indexPath.row), at: self.counter)
                     self.arrayOfPinsCLLocations.insert(self.arrayOfPinsCLLocations.remove(at: indexPath.row), at: self.counter)
-
+                    
                     self.citiesTableView.endUpdates()
                     
                     self.citiesTableView.reloadData()
@@ -268,6 +272,10 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
             arrayOfAnotations.remove(at: indexPath.row)
             arrayOfPinsNames.remove(at: indexPath.row)
             arrayOfPinsCLLocations.remove(at: indexPath.row)
+            if arrayOfFavourites[indexPath.row] == true {
+                FavouriteCities.deleteFavouriteCity(matching: indexPath.row, into: self.context)
+                try? self.context.save()
+            }
             arrayOfFavourites.remove(at: indexPath.row)
             citiesTableView.deleteRows(at: [indexPath], with: .fade)
             citiesTableView.reloadData()
