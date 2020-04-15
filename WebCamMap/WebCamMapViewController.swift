@@ -290,6 +290,8 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         
         spinner?.startAnimating()
         
+        
+        // Disable user interaction while spinner is active.
         citiesTableView.isUserInteractionEnabled = false
         
         requestWebCam{ (data, success) in
@@ -339,6 +341,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
             }
             
+            // Enable user interaction after fetching Data is over.
             DispatchQueue.main.async {
                 self.citiesTableView.isUserInteractionEnabled = true
             }
