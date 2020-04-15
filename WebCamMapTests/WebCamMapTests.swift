@@ -2,12 +2,11 @@
 //  WebCamMapTests.swift
 //  WebCamMapTests
 //
-//  Created by Nemanja Petrovic on 01/04/2020.
+//  Created by Nemanja Petrovic on 15/04/2020.
 //  Copyright © 2020 Nemanja Petrovic. All rights reserved.
 //
 
 import XCTest
-@testable import WebCamMap
 
 class WebCamMapTests: XCTestCase {
 
@@ -26,7 +25,7 @@ class WebCamMapTests: XCTestCase {
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
-        self.measure {
+        measure {
             // Put the code you want to measure the time of here.
         }
     }

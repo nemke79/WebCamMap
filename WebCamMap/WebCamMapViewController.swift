@@ -290,6 +290,8 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         
         spinner?.startAnimating()
         
+        citiesTableView.isUserInteractionEnabled = false
+        
         requestWebCam{ (data, success) in
             
             guard let _ = data else {return}
@@ -337,6 +339,9 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
             }
             
+            DispatchQueue.main.async {
+                self.citiesTableView.isUserInteractionEnabled = true
+            }
         }
         
         dataTask.resume()

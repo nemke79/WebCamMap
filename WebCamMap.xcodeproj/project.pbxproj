@@ -12,11 +12,9 @@
 		DF01E4812434C29A005F9117 /* WebCamMap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF01E47F2434C29A005F9117 /* WebCamMap.xcdatamodeld */; };
 		DF01E4832434C29F005F9117 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF01E4822434C29F005F9117 /* Assets.xcassets */; };
 		DF01E4862434C29F005F9117 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF01E4842434C29F005F9117 /* LaunchScreen.storyboard */; };
-		DF01E4912434C29F005F9117 /* WebCamMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF01E4902434C29F005F9117 /* WebCamMapTests.swift */; };
 		DF01E4A02434C3A6005F9117 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF01E49F2434C3A6005F9117 /* Main.storyboard */; };
-		DF01E4A22434C897005F9117 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF01E4A12434C897005F9117 /* Info.plist */; };
 		DF01E4A42437435C005F9117 /* WebCamInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF01E4A32437435C005F9117 /* WebCamInfoTableViewController.swift */; };
-		DF4BE61A2438E29D00125E6E /* WebCamInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF01E4A32437435C005F9117 /* WebCamInfoTableViewController.swift */; };
+		DF6C45DE24473B390065C1ED /* WebCamMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6C45DD24473B390065C1ED /* WebCamMapTests.swift */; };
 		DF8E910F243CC39C00CD2C69 /* WebCamInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8E910E243CC39C00CD2C69 /* WebCamInfo.swift */; };
 		DF981054243F90C900953E92 /* CityNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF981053243F90C900953E92 /* CityNameCell.swift */; };
 		DFABF2292437A0520019B04E /* WebCamMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABF2282437A0520019B04E /* WebCamMapViewController.swift */; };
@@ -24,7 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DF01E48D2434C29F005F9117 /* PBXContainerItemProxy */ = {
+		DF6C45E024473B390065C1ED /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DF01E46B2434C29A005F9117 /* Project object */;
 			proxyType = 1;
@@ -41,11 +39,11 @@
 		DF01E4822434C29F005F9117 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF01E4852434C29F005F9117 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DF01E4872434C29F005F9117 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DF01E48C2434C29F005F9117 /* WebCamMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebCamMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DF01E4902434C29F005F9117 /* WebCamMapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCamMapTests.swift; sourceTree = "<group>"; };
 		DF01E49F2434C3A6005F9117 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		DF01E4A12434C897005F9117 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../OpenWeatherNemke/OpenWeatherNemke/Info.plist; sourceTree = "<group>"; };
 		DF01E4A32437435C005F9117 /* WebCamInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCamInfoTableViewController.swift; sourceTree = "<group>"; };
+		DF6C45DB24473B390065C1ED /* WebCamMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebCamMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF6C45DD24473B390065C1ED /* WebCamMapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCamMapTests.swift; sourceTree = "<group>"; };
+		DF6C45DF24473B390065C1ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF8E910E243CC39C00CD2C69 /* WebCamInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCamInfo.swift; sourceTree = "<group>"; };
 		DF981053243F90C900953E92 /* CityNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityNameCell.swift; sourceTree = "<group>"; };
 		DFABF2282437A0520019B04E /* WebCamMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCamMapViewController.swift; sourceTree = "<group>"; };
@@ -60,7 +58,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DF01E4892434C29F005F9117 /* Frameworks */ = {
+		DF6C45D824473B390065C1ED /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -74,7 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				DF01E4752434C29A005F9117 /* WebCamMap */,
-				DF01E48F2434C29F005F9117 /* WebCamMapTests */,
+				DF6C45DC24473B390065C1ED /* WebCamMapTests */,
 				DF01E4742434C29A005F9117 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -83,7 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				DF01E4732434C29A005F9117 /* WebCamMap.app */,
-				DF01E48C2434C29F005F9117 /* WebCamMapTests.xctest */,
+				DF6C45DB24473B390065C1ED /* WebCamMapTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -107,11 +105,11 @@
 			path = WebCamMap;
 			sourceTree = "<group>";
 		};
-		DF01E48F2434C29F005F9117 /* WebCamMapTests */ = {
+		DF6C45DC24473B390065C1ED /* WebCamMapTests */ = {
 			isa = PBXGroup;
 			children = (
-				DF01E4902434C29F005F9117 /* WebCamMapTests.swift */,
-				DF01E4A12434C897005F9117 /* Info.plist */,
+				DF6C45DD24473B390065C1ED /* WebCamMapTests.swift */,
+				DF6C45DF24473B390065C1ED /* Info.plist */,
 			);
 			path = WebCamMapTests;
 			sourceTree = "<group>";
@@ -136,22 +134,22 @@
 			productReference = DF01E4732434C29A005F9117 /* WebCamMap.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DF01E48B2434C29F005F9117 /* WebCamMapTests */ = {
+		DF6C45DA24473B390065C1ED /* WebCamMapTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DF01E4982434C29F005F9117 /* Build configuration list for PBXNativeTarget "WebCamMapTests" */;
+			buildConfigurationList = DF6C45E224473B390065C1ED /* Build configuration list for PBXNativeTarget "WebCamMapTests" */;
 			buildPhases = (
-				DF01E4882434C29F005F9117 /* Sources */,
-				DF01E4892434C29F005F9117 /* Frameworks */,
-				DF01E48A2434C29F005F9117 /* Resources */,
+				DF6C45D724473B390065C1ED /* Sources */,
+				DF6C45D824473B390065C1ED /* Frameworks */,
+				DF6C45D924473B390065C1ED /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				DF01E48E2434C29F005F9117 /* PBXTargetDependency */,
+				DF6C45E124473B390065C1ED /* PBXTargetDependency */,
 			);
 			name = WebCamMapTests;
 			productName = WebCamMapTests;
-			productReference = DF01E48C2434C29F005F9117 /* WebCamMapTests.xctest */;
+			productReference = DF6C45DB24473B390065C1ED /* WebCamMapTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -167,7 +165,7 @@
 					DF01E4722434C29A005F9117 = {
 						CreatedOnToolsVersion = 11.4;
 					};
-					DF01E48B2434C29F005F9117 = {
+					DF6C45DA24473B390065C1ED = {
 						CreatedOnToolsVersion = 11.4;
 						TestTargetID = DF01E4722434C29A005F9117;
 					};
@@ -187,7 +185,7 @@
 			projectRoot = "";
 			targets = (
 				DF01E4722434C29A005F9117 /* WebCamMap */,
-				DF01E48B2434C29F005F9117 /* WebCamMapTests */,
+				DF6C45DA24473B390065C1ED /* WebCamMapTests */,
 			);
 		};
 /* End PBXProject section */
@@ -203,11 +201,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DF01E48A2434C29F005F9117 /* Resources */ = {
+		DF6C45D924473B390065C1ED /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF01E4A22434C897005F9117 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,22 +226,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DF01E4882434C29F005F9117 /* Sources */ = {
+		DF6C45D724473B390065C1ED /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF4BE61A2438E29D00125E6E /* WebCamInfoTableViewController.swift in Sources */,
-				DF01E4912434C29F005F9117 /* WebCamMapTests.swift in Sources */,
+				DF6C45DE24473B390065C1ED /* WebCamMapTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DF01E48E2434C29F005F9117 /* PBXTargetDependency */ = {
+		DF6C45E124473B390065C1ED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DF01E4722434C29A005F9117 /* WebCamMap */;
-			targetProxy = DF01E48D2434C29F005F9117 /* PBXContainerItemProxy */;
+			targetProxy = DF6C45E024473B390065C1ED /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -412,15 +408,13 @@
 			};
 			name = Release;
 		};
-		DF01E4992434C29F005F9117 /* Debug */ = {
+		DF6C45E324473B390065C1ED /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PG994VZ565;
 				INFOPLIST_FILE = WebCamMapTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -434,15 +428,13 @@
 			};
 			name = Debug;
 		};
-		DF01E49A2434C29F005F9117 /* Release */ = {
+		DF6C45E424473B390065C1ED /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PG994VZ565;
 				INFOPLIST_FILE = WebCamMapTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -477,11 +469,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DF01E4982434C29F005F9117 /* Build configuration list for PBXNativeTarget "WebCamMapTests" */ = {
+		DF6C45E224473B390065C1ED /* Build configuration list for PBXNativeTarget "WebCamMapTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DF01E4992434C29F005F9117 /* Debug */,
-				DF01E49A2434C29F005F9117 /* Release */,
+				DF6C45E324473B390065C1ED /* Debug */,
+				DF6C45E424473B390065C1ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
