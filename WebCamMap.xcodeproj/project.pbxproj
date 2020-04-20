@@ -90,13 +90,13 @@
 			isa = PBXGroup;
 			children = (
 				DFABF2282437A0520019B04E /* WebCamMapViewController.swift */,
+				DF8E910E243CC39C00CD2C69 /* WebCamInfo.swift */,
 				DFB057022441CFE300F1F900 /* FavouriteCities.swift */,
 				DF981053243F90C900953E92 /* CityNameCell.swift */,
 				DF01E4762434C29A005F9117 /* AppDelegate.swift */,
 				DF01E4782434C29A005F9117 /* SceneDelegate.swift */,
 				DF01E49F2434C3A6005F9117 /* Main.storyboard */,
 				DF01E4A32437435C005F9117 /* WebCamInfoTableViewController.swift */,
-				DF8E910E243CC39C00CD2C69 /* WebCamInfo.swift */,
 				DF01E4822434C29F005F9117 /* Assets.xcassets */,
 				DF01E4842434C29F005F9117 /* LaunchScreen.storyboard */,
 				DF01E4872434C29F005F9117 /* Info.plist */,

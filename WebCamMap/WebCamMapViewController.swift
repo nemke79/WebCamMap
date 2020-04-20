@@ -214,13 +214,14 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                     self.citiesTableView.beginUpdates()
                     
                     self.citiesTableView.moveRow(at: indexPath, to: IndexPath(row: self.counter, section: 0))
+                    
+                    self.citiesTableView.endUpdates()
+            
                     self.arrayOfFavourites.insert(self.arrayOfFavourites.remove(at: indexPath.row), at: self.counter)
                     self.arrayOfPinsNames.insert(self.arrayOfPinsNames.remove(at: indexPath.row), at: self.counter)
                     self.arrayOfAnotations.insert(self.arrayOfAnotations.remove(at: indexPath.row), at: self.counter)
                     self.arrayOfPinsCLLocations.insert(self.arrayOfPinsCLLocations.remove(at: indexPath.row), at: self.counter)
-                    
-                    self.citiesTableView.endUpdates()
-                    
+                
                     self.citiesTableView.reloadData()
                     
                     let indxPath = NSIndexPath(row: self.counter, section: 0)
@@ -245,12 +246,13 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                     self.citiesTableView.beginUpdates()
                     
                     self.citiesTableView.moveRow(at: indexPath, to: IndexPath(row: self.counter - 1, section: 0))
+                    
+                    self.citiesTableView.endUpdates()
+                    
                     self.arrayOfFavourites.insert(self.arrayOfFavourites.remove(at: indexPath.row), at: self.counter - 1)
                     self.arrayOfPinsNames.insert(self.arrayOfPinsNames.remove(at: indexPath.row), at: self.counter - 1)
                     self.arrayOfAnotations.insert(self.arrayOfAnotations.remove(at: indexPath.row), at: self.counter - 1)
                     self.arrayOfPinsCLLocations.insert(self.arrayOfPinsCLLocations.remove(at: indexPath.row), at: self.counter - 1)
-                    
-                    self.citiesTableView.endUpdates()
                     
                     self.citiesTableView.reloadData()
                     

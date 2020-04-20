@@ -10,7 +10,7 @@
         <!--Web Cam Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="WebCamMapViewController" customModule="WebCamMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebCamMapViewController" id="BYZ-38-t0r" customClass="WebCamMapViewController" customModule="WebCamMap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -115,7 +115,7 @@
         <!--Web Cam Info Table View Controller-->
         <scene sceneID="uuJ-Ld-5pl">
             <objects>
-                <tableViewController id="A3z-qF-A62" customClass="WebCamInfoTableViewController" customModule="WebCamMap" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="WebCamInfoTableViewController" id="A3z-qF-A62" customClass="WebCamInfoTableViewController" customModule="WebCamMap" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="k1k-NP-WJc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

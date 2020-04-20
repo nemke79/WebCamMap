@@ -7,21 +7,34 @@
 //
 
 import XCTest
+@testable import WebCamMap
 
 class WebCamMapTests: XCTestCase {
-    
+
     var sut: URLSession!
+    
+    var vc: WebCamMapViewController!
+    
+    var infoVC: WebCamInfoTableViewController!
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         try super.setUpWithError()
         sut = URLSession(configuration: .default)
+        
+        vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "WebCamMapViewController") as? WebCamMapViewController
+               vc.loadViewIfNeeded()
+        
+        infoVC = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: "WebCamInfoTableViewController") as? WebCamInfoTableViewController
+        infoVC.loadViewIfNeeded()
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         try super.tearDownWithError()
         sut = nil
+        vc = nil
+        infoVC = nil
     }
     
     func testCallToApiWindyCompletes() {
@@ -44,6 +57,52 @@ class WebCamMapTests: XCTestCase {
       // then
       XCTAssertNil(responseError)
       XCTAssertEqual(statusCode, 200)
+    }
+    
+    func testWebCamMapViewControllerHasTableView() {
+        XCTAssertNotNil(vc.citiesTableView, "Controller should have citiesTableView.")
+    }
+    
+    func testCitiesTableViewHasCells() {
+        let cell = vc.citiesTableView.dequeueReusableCell(withIdentifier: "cityName")
+        
+        XCTAssertNotNil(cell, "TableView should be able to dequeue cell with identifier: 'cityName'")
+    }
+    
+    func testCitiesTableViewCellValue() {
+        
+        // One way for testing cell value.
+        let cell = vc.tableView(vc.citiesTableView, cellForRowAt: IndexPath(row: 0, section: 0))
+        
+        let vcCell = cell as? CityNameCell
+        
+        vcCell?.cityName.text = "Belgrade"
+        
+        vcCell?.favouriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        
+        XCTAssertEqual(vcCell?.cityName.text, "Belgrade", "Not good input in textLabel of cell.")
+        
+        XCTAssertNotNil(vcCell?.favouriteButton.imageView?.image, "No image in cell - nil value.")
+    }
+    
+    func testWebCamInfoCellValue() {
+        
+        // Another way for testing cell value.
+        let cell = infoVC.tableView.dequeueReusableCell(withIdentifier: "WebCamInfoCell", for: IndexPath(row: 0, section: 0))
+        
+        cell.textLabel?.text = "Belgrade"
+        
+        XCTAssertEqual(cell.textLabel?.text, "Belgrade", "Not good input in textLabel of cell.")
+        
+         cell.imageView?.image = UIImage(systemName: "heart")
+        
+         XCTAssertNotNil(cell.imageView?.image, "No image in cell - nil value.")
+    }
+    
+    func testWebCamInfoTableViewControllerHasCells() {
+        let cell = infoVC.tableView.dequeueReusableCell(withIdentifier: "WebCamInfoCell")
+        
+        XCTAssertNotNil(cell, "TableView should be able to dequeue cell with identifier: 'WebCamInfoCell'")
     }
 
     func testExample() throws {
