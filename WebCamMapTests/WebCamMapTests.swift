@@ -78,7 +78,7 @@ class WebCamMapTests: XCTestCase {
         
         vcCell?.cityName.text = "Belgrade"
         
-        vcCell?.favouriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        vcCell?.favouriteButton.setImage(UIImage(systemName: "video.circle"), for: .normal)
         
         XCTAssertEqual(vcCell?.cityName.text, "Belgrade", "Not good input in textLabel of cell.")
         
@@ -94,7 +94,7 @@ class WebCamMapTests: XCTestCase {
         
         XCTAssertEqual(cell.textLabel?.text, "Belgrade", "Not good input in textLabel of cell.")
         
-         cell.imageView?.image = UIImage(systemName: "heart")
+         cell.imageView?.image = UIImage(systemName: "video.circle")
         
          XCTAssertNotNil(cell.imageView?.image, "No image in cell - nil value.")
     }

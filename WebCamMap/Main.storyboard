@@ -36,12 +36,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXY-pO-X8f">
-                                                    <rect key="frame" x="324" y="11" width="30" height="22"/>
+                                                    <rect key="frame" x="324" y="-42.5" width="30" height="128.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="EUp-7V-qq3"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
-                                                    <state key="normal" image="heart" catalog="system"/>
+                                                    <state key="normal" image="video.circle"/>
                                                     <connections>
                                                         <action selector="favouriteButtonTapped:" destination="VjO-qF-7TT" eventType="touchUpInside" id="3ZA-lA-hws"/>
                                                     </connections>
@@ -157,6 +157,6 @@
     </scenes>
     <resources>
         <image name="camera" catalog="system" width="128" height="96"/>
-        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="video.circle" width="128" height="128"/>
     </resources>
 </document>
