@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import CoreData
 
-class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate {
+class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UIPopoverPresentationControllerDelegate {
     
     private var favouriteCities: [FavouriteCities]?
     
@@ -312,10 +312,39 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                         spinner?.stopAnimating()
                     }
                 }
-                
+            case "showInfo":
+                    if let popoverHelpENoteVC = segue.destination as? InfoViewController {
+                        popoverHelpENoteVC.popoverPresentationController?.delegate = self
+                }
             default: break
             }
         }
+    }
+    
+    func presentationController(_ controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
+        let btnDone = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneInfo))
+        let nav = UINavigationController(rootViewController: controller.presentedViewController)
+        nav.topViewController!.navigationItem.rightBarButtonItem = btnDone
+        return nav
+    }
+    
+    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+        setAlphaOfBackgroundViews(alpha: 1)
+    }
+    
+    func prepareForPopoverPresentation(_ popoverPresentationController: UIPopoverPresentationController) {
+        setAlphaOfBackgroundViews(alpha: 0.7)
+    }
+    
+    func setAlphaOfBackgroundViews(alpha: CGFloat) {
+        UIView.animate(withDuration: 0.2) {
+            self.view.alpha = alpha;
+            self.navigationController?.navigationBar.alpha = alpha;
+        }
+    }
+    
+    @objc func doneInfo(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
     
     func requestWebCam(completion: @escaping (Any?, Bool) -> ()) {
@@ -406,5 +435,16 @@ extension UIViewController {
         } else {
             return self
         }
+    }
+}
+
+extension UIFont {
+    func withTraits(traits:UIFontDescriptor.SymbolicTraits) -> UIFont {
+        let descriptor = fontDescriptor.withSymbolicTraits(traits)
+        return UIFont(descriptor: descriptor!, size: 0) //size 0 means keep the size as it is
+    }
+    
+    func bold() -> UIFont {
+        return withTraits(traits: .traitBold)
     }
 }

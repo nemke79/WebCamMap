@@ -83,7 +83,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="418-OZ-zp9"/>
+                    <navigationItem key="navigationItem" id="418-OZ-zp9">
+                        <barButtonItem key="leftBarButtonItem" title="help" image="info.circle" catalog="system" id="tVq-GC-Ko1">
+                            <connections>
+                                <segue destination="gHp-gV-7M1" kind="popoverPresentation" identifier="showInfo" popoverAnchorBarButtonItem="tVq-GC-Ko1" id="uHU-10-Q5g">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="citiesTableView" destination="O98-Bf-jfE" id="Fra-dV-X2H"/>
                         <outlet property="mapView" destination="zef-T7-x9o" id="f35-a4-dyY"/>
@@ -112,6 +120,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xc5-K4-Qa9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-78.260869565217391" y="75.669642857142847"/>
+        </scene>
+        <!--Info View Controller-->
+        <scene sceneID="OdS-FP-kgb">
+            <objects>
+                <viewController id="gHp-gV-7M1" customClass="InfoViewController" customModule="WebCamMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" alpha="0.90000000000000002" contentMode="scaleToFill" id="4V4-YI-n7K">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uo0-25-1is">
+                                <rect key="frame" x="20" y="20" width="374" height="802"/>
+                                <color key="backgroundColor" red="0.83027850822669791" green="0.92040659009721582" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="uo0-25-1is" firstAttribute="leading" secondItem="4V4-YI-n7K" secondAttribute="leading" constant="20" id="SbP-3g-EDZ"/>
+                            <constraint firstItem="uo0-25-1is" firstAttribute="top" secondItem="4V4-YI-n7K" secondAttribute="top" constant="20" id="Xd0-bV-RDX"/>
+                            <constraint firstAttribute="bottom" secondItem="uo0-25-1is" secondAttribute="bottom" constant="20" id="jLw-Fa-Jja"/>
+                            <constraint firstAttribute="trailing" secondItem="uo0-25-1is" secondAttribute="trailing" constant="20" id="oYj-aj-a8X"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="73Y-9c-Aqf"/>
+                    </view>
+                    <connections>
+                        <outlet property="infoTextView" destination="uo0-25-1is" id="qI7-NA-aKe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TGU-tm-gQi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1420" y="763"/>
         </scene>
         <!--Web Cam Info Table View Controller-->
         <scene sceneID="uuJ-Ld-5pl">
@@ -158,6 +199,7 @@
     </scenes>
     <resources>
         <image name="camera" catalog="system" width="128" height="96"/>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="video.circle" catalog="system" width="128" height="121"/>
     </resources>
 </document>

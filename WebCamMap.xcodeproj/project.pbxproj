@@ -15,6 +15,7 @@
 		DF01E4A02434C3A6005F9117 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF01E49F2434C3A6005F9117 /* Main.storyboard */; };
 		DF01E4A42437435C005F9117 /* WebCamInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF01E4A32437435C005F9117 /* WebCamInfoTableViewController.swift */; };
 		DF6C45DE24473B390065C1ED /* WebCamMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6C45DD24473B390065C1ED /* WebCamMapTests.swift */; };
+		DF6C45E8244F25040065C1ED /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6C45E7244F25040065C1ED /* InfoViewController.swift */; };
 		DF8E910F243CC39C00CD2C69 /* WebCamInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8E910E243CC39C00CD2C69 /* WebCamInfo.swift */; };
 		DF981054243F90C900953E92 /* CityNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF981053243F90C900953E92 /* CityNameCell.swift */; };
 		DFABF2292437A0520019B04E /* WebCamMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABF2282437A0520019B04E /* WebCamMapViewController.swift */; };
@@ -44,6 +45,7 @@
 		DF6C45DB24473B390065C1ED /* WebCamMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebCamMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF6C45DD24473B390065C1ED /* WebCamMapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCamMapTests.swift; sourceTree = "<group>"; };
 		DF6C45DF24473B390065C1ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DF6C45E7244F25040065C1ED /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		DF8E910E243CC39C00CD2C69 /* WebCamInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCamInfo.swift; sourceTree = "<group>"; };
 		DF981053243F90C900953E92 /* CityNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityNameCell.swift; sourceTree = "<group>"; };
 		DFABF2282437A0520019B04E /* WebCamMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCamMapViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				DF01E4762434C29A005F9117 /* AppDelegate.swift */,
 				DF01E4782434C29A005F9117 /* SceneDelegate.swift */,
 				DF01E49F2434C3A6005F9117 /* Main.storyboard */,
+				DF6C45E7244F25040065C1ED /* InfoViewController.swift */,
 				DF01E4A32437435C005F9117 /* WebCamInfoTableViewController.swift */,
 				DF01E4822434C29F005F9117 /* Assets.xcassets */,
 				DF01E4842434C29F005F9117 /* LaunchScreen.storyboard */,
@@ -221,6 +224,7 @@
 				DF01E4A42437435C005F9117 /* WebCamInfoTableViewController.swift in Sources */,
 				DFABF2292437A0520019B04E /* WebCamMapViewController.swift in Sources */,
 				DF8E910F243CC39C00CD2C69 /* WebCamInfo.swift in Sources */,
+				DF6C45E8244F25040065C1ED /* InfoViewController.swift in Sources */,
 				DFB057032441CFE300F1F900 /* FavouriteCities.swift in Sources */,
 				DF01E4812434C29A005F9117 /* WebCamMap.xcdatamodeld in Sources */,
 			);
