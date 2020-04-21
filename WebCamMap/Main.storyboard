@@ -36,12 +36,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXY-pO-X8f">
-                                                    <rect key="frame" x="324" y="-42.5" width="30" height="128.5"/>
+                                                    <rect key="frame" x="324" y="11" width="30" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="EUp-7V-qq3"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
-                                                    <state key="normal" image="video.circle"/>
+                                                    <state key="normal" image="video.circle" catalog="system"/>
                                                     <connections>
                                                         <action selector="favouriteButtonTapped:" destination="VjO-qF-7TT" eventType="touchUpInside" id="3ZA-lA-hws"/>
                                                     </connections>
@@ -55,6 +55,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="iXY-pO-X8f" secondAttribute="trailing" constant="20" id="ogg-Kk-zDm"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="cityName" destination="SAX-RG-orp" id="5IV-1F-uqK"/>
                                             <outlet property="favouriteButton" destination="iXY-pO-X8f" id="jOZ-Qf-uy6"/>
@@ -157,6 +158,6 @@
     </scenes>
     <resources>
         <image name="camera" catalog="system" width="128" height="96"/>
-        <image name="video.circle" width="128" height="128"/>
+        <image name="video.circle" catalog="system" width="128" height="121"/>
     </resources>
 </document>
