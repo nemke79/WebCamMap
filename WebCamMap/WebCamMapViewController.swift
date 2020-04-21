@@ -74,6 +74,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         citiesTableView.dataSource = self
         citiesTableView.delegate = self
         citiesTableView.rowHeight = 44
+        citiesTableView.backgroundView = UIImageView(image: UIImage(named: "gradient-background-blue.png"))
         mapView.delegate = self
         mapView.mapType = .standard
         mapView.isZoomEnabled = true
