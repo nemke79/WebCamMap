@@ -71,6 +71,15 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         
         spinner?.stopAnimating()
         
+        if !Reachability.isConnectedToNetwork() {
+            let alert = UIAlertController(title: "Web Cams Info", message: "You have network problem. Please try again later.", preferredStyle: .alert)
+                                   
+                                   alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+                                       return
+                                   }))
+                                   self.present(alert, animated: true, completion: nil)
+        }
+        
         citiesTableView.dataSource = self
         citiesTableView.delegate = self
         citiesTableView.rowHeight = 44
@@ -137,33 +146,43 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @objc func tapGestureHandler(tgr: UITapGestureRecognizer)
     {
-        let touchPoint = tgr.location(in: mapView)
-        let touchMapCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
-        
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = touchMapCoordinate
-        mapView.addAnnotation(annotation)
-        
-        arrayOfAnotations.append(annotation)
-        
-        let location = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
-        
-        let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
-            // Process Response
-            if let error = error {
-                print("Unable to Reverse Geocode Location (\(error))")
-            } else {
-                if let placemarks = placemarks, let placemark = placemarks.first {
-                    self.arrayOfPinsNames.append("\(placemark.locality ?? placemark.name ?? placemark.country ?? placemark.ocean ?? "Unknown location") \(placemark.country ?? "")")
-                    self.arrayOfPinsCLLocations.append(placemark.location!)
-                    
-                    self.arrayOfFavourites.append(false)
-                    
-                    self.citiesTableView.reloadData()
-                    
-                    let indexPath = NSIndexPath(row: self.arrayOfPinsNames.count-1, section: 0)
-                    self.citiesTableView.scrollToRow(at: indexPath as IndexPath, at: .bottom, animated: true)
+        if !Reachability.isConnectedToNetwork() {
+            let alert = UIAlertController(title: "Web Cams Info", message: "You have network problem. Please try again later.", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+                return
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+        else {
+            let touchPoint = tgr.location(in: mapView)
+            let touchMapCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
+            
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = touchMapCoordinate
+            mapView.addAnnotation(annotation)
+            
+            arrayOfAnotations.append(annotation)
+            
+            let location = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
+            
+            let geocoder = CLGeocoder()
+            geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+                // Process Response
+                if let error = error {
+                    print("Unable to Reverse Geocode Location (\(error))")
+                } else {
+                    if let placemarks = placemarks, let placemark = placemarks.first {
+                        self.arrayOfPinsNames.append("\(placemark.locality ?? placemark.name ?? placemark.country ?? placemark.ocean ?? "Unknown location") \(placemark.country ?? "")")
+                        self.arrayOfPinsCLLocations.append(placemark.location!)
+                        
+                        self.arrayOfFavourites.append(false)
+                        
+                        self.citiesTableView.reloadData()
+                        
+                        let indexPath = NSIndexPath(row: self.arrayOfPinsNames.count-1, section: 0)
+                        self.citiesTableView.scrollToRow(at: indexPath as IndexPath, at: .bottom, animated: true)
+                    }
                     
                 }
             }
@@ -217,12 +236,12 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                     self.citiesTableView.moveRow(at: indexPath, to: IndexPath(row: self.counter, section: 0))
                     
                     self.citiesTableView.endUpdates()
-            
+                    
                     self.arrayOfFavourites.insert(self.arrayOfFavourites.remove(at: indexPath.row), at: self.counter)
                     self.arrayOfPinsNames.insert(self.arrayOfPinsNames.remove(at: indexPath.row), at: self.counter)
                     self.arrayOfAnotations.insert(self.arrayOfAnotations.remove(at: indexPath.row), at: self.counter)
                     self.arrayOfPinsCLLocations.insert(self.arrayOfPinsCLLocations.remove(at: indexPath.row), at: self.counter)
-                
+                    
                     self.citiesTableView.reloadData()
                     
                     let indxPath = NSIndexPath(row: self.counter, section: 0)
@@ -314,8 +333,8 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                     }
                 }
             case "showInfo":
-                    if let popoverHelpENoteVC = segue.destination as? InfoViewController {
-                        popoverHelpENoteVC.popoverPresentationController?.delegate = self
+                if let popoverHelpENoteVC = segue.destination as? InfoViewController {
+                    popoverHelpENoteVC.popoverPresentationController?.delegate = self
                 }
             default: break
             }
@@ -352,31 +371,44 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         let url = URL(string: baseURL)
         
         let dataTask = URLSession.shared.dataTask(with: url!) { (data, response, error) in
-            self.fetchData(data: data, response: response!, error: error, completion: completion)
-            if error == nil, self.webCamsInfo.count > 0 {
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "showWebCamInfo", sender: self)
+            if response != nil {
+                self.fetchData(data: data, response: response!, error: error, completion: completion)
+                if error == nil, self.webCamsInfo.count > 0 {
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "showWebCamInfo", sender: self)
+                    }
+                } else if error == nil, self.webCamsInfo.count == 0 {
+                    DispatchQueue.main.async {
+                        self.spinner?.stopAnimating()
+                        let alert = UIAlertController(title: "Web Cams Info", message: "No web cameras nearby for this location.", preferredStyle: .alert)
+                        
+                        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+                            return
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                    }
                 }
-            } else if error == nil, self.webCamsInfo.count == 0 {
+                
+                // Enable user interaction after fetching Data is over.
+                DispatchQueue.main.async {
+                    self.citiesTableView.isUserInteractionEnabled = true
+                }
+            } else {
                 DispatchQueue.main.async {
                     self.spinner?.stopAnimating()
-                    let alert = UIAlertController(title: "Web Cams Info", message: "No web cameras nearby for this location.", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Web Cams Info", message: "You have network problem. Please try again later.", preferredStyle: .alert)
                     
                     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
                         return
                     }))
                     self.present(alert, animated: true, completion: nil)
+                    
+                    self.citiesTableView.isUserInteractionEnabled = true
                 }
-            }
-            
-            // Enable user interaction after fetching Data is over.
-            DispatchQueue.main.async {
-                self.citiesTableView.isUserInteractionEnabled = true
             }
         }
         
         dataTask.resume()
-        
     }
     
     private func fetchData(data: Data?, response: URLResponse, error: Error?, completion: @escaping (Any?, Bool) -> ()) {

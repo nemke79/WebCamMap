@@ -14,6 +14,7 @@
 		DF01E4862434C29F005F9117 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF01E4842434C29F005F9117 /* LaunchScreen.storyboard */; };
 		DF01E4A02434C3A6005F9117 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF01E49F2434C3A6005F9117 /* Main.storyboard */; };
 		DF01E4A42437435C005F9117 /* WebCamInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF01E4A32437435C005F9117 /* WebCamInfoTableViewController.swift */; };
+		DF21EDE92450530C00860E5D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF21EDE82450530C00860E5D /* Reachability.swift */; };
 		DF6C45DE24473B390065C1ED /* WebCamMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6C45DD24473B390065C1ED /* WebCamMapTests.swift */; };
 		DF6C45E8244F25040065C1ED /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6C45E7244F25040065C1ED /* InfoViewController.swift */; };
 		DF8E910F243CC39C00CD2C69 /* WebCamInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8E910E243CC39C00CD2C69 /* WebCamInfo.swift */; };
@@ -42,6 +43,7 @@
 		DF01E4872434C29F005F9117 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF01E49F2434C3A6005F9117 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DF01E4A32437435C005F9117 /* WebCamInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCamInfoTableViewController.swift; sourceTree = "<group>"; };
+		DF21EDE82450530C00860E5D /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		DF6C45DB24473B390065C1ED /* WebCamMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebCamMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF6C45DD24473B390065C1ED /* WebCamMapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCamMapTests.swift; sourceTree = "<group>"; };
 		DF6C45DF24473B390065C1ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				DFABF2282437A0520019B04E /* WebCamMapViewController.swift */,
+				DF21EDE82450530C00860E5D /* Reachability.swift */,
 				DF8E910E243CC39C00CD2C69 /* WebCamInfo.swift */,
 				DFB057022441CFE300F1F900 /* FavouriteCities.swift */,
 				DF981053243F90C900953E92 /* CityNameCell.swift */,
@@ -226,6 +229,7 @@
 				DF8E910F243CC39C00CD2C69 /* WebCamInfo.swift in Sources */,
 				DF6C45E8244F25040065C1ED /* InfoViewController.swift in Sources */,
 				DFB057032441CFE300F1F900 /* FavouriteCities.swift in Sources */,
+				DF21EDE92450530C00860E5D /* Reachability.swift in Sources */,
 				DF01E4812434C29A005F9117 /* WebCamMap.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
