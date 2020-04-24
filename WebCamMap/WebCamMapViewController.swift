@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import CoreData
 
-class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UIPopoverPresentationControllerDelegate {
+class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UIPopoverPresentationControllerDelegate, UISearchControllerDelegate, UISearchBarDelegate {
     
     private var favouriteCities: [FavouriteCities]?
     
@@ -37,9 +37,49 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var counter = 0
     
-    //    @IBAction func favouriteButtonTapped(_ sender: Any) {
-    //        CityNameCell.actionBlock?()
-    //    }
+    @IBAction func searchButton(_ sender: Any) {
+     let searchController = UISearchController()
+        searchController.searchBar.delegate = self
+        present(searchController, animated: true, completion: nil)
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        citiesTableView.isUserInteractionEnabled = false
+        mapView.isUserInteractionEnabled = false
+        
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.center = mapView.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = .darkGray
+        activityIndicator.style = .large
+        activityIndicator.startAnimating()
+        
+        mapView.addSubview(activityIndicator)
+        
+        //Hide searchbar.
+        searchBar.resignFirstResponder()
+        dismiss(animated: true, completion: nil)
+        
+        //Create search request.
+        let searchRequest = MKLocalSearch.Request()
+        searchRequest.naturalLanguageQuery = searchBar.text
+        
+        let activeSearch = MKLocalSearch(request: searchRequest)
+        activeSearch.start { (response, error) in
+            activityIndicator.stopAnimating()
+            self.citiesTableView.isUserInteractionEnabled = true
+            self.mapView.isUserInteractionEnabled = true
+            if response != nil {
+                let latitude = response?.boundingRegion.center.latitude
+                let longitude = response?.boundingRegion.center.longitude
+                
+                //Zooming.
+                let coordinate = CLLocationCoordinate2DMake(latitude!, longitude!)
+                let viewRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 40000, longitudinalMeters: 40000)
+                self.mapView.setRegion(viewRegion, animated: false)
+            }
+        }
+    }
     
     static var persistentContainer: NSPersistentContainer {
         return (UIApplication.shared.delegate as! AppDelegate).persistentContainer
@@ -83,7 +123,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         citiesTableView.dataSource = self
         citiesTableView.delegate = self
         citiesTableView.rowHeight = 44
-        citiesTableView.backgroundView = UIImageView(image: UIImage(named: "gradient-background-blue.png"))
+        citiesTableView.backgroundView = UIImageView(image: UIImage(named: "OrangeGradientBackground.png"))
         mapView.delegate = self
         mapView.mapType = .standard
         mapView.isZoomEnabled = true
@@ -132,7 +172,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                 
                 self.citiesTableView.reloadData()
                 
-                let indexPath = NSIndexPath(row: self.arrayOfPinsNames.count-1, section: 0)
+                let indexPath = NSIndexPath(row: 0, section: 0)
                 self.citiesTableView.scrollToRow(at: indexPath as IndexPath, at: .bottom, animated: true)
             }
         }
