@@ -42,7 +42,7 @@
                                                         <constraint firstAttribute="width" constant="30" id="EUp-7V-qq3"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
-                                                    <state key="normal" image="video.circle" catalog="system"/>
+                                                    <state key="normal" image="video" catalog="system"/>
                                                     <connections>
                                                         <action selector="favouriteButtonTapped:" destination="VjO-qF-7TT" eventType="touchUpInside" id="3ZA-lA-hws"/>
                                                     </connections>
@@ -207,6 +207,6 @@
     <resources>
         <image name="camera" catalog="system" width="128" height="96"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
-        <image name="video.circle" catalog="system" width="128" height="121"/>
+        <image name="video" catalog="system" width="128" height="83"/>
     </resources>
 </document>

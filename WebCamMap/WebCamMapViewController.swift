@@ -247,15 +247,15 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
             cityNameCell.cityName.attributedText = attrText
             
             if arrayOfFavourites[indexPath.row] == true {
-                cityNameCell.favouriteButton.setImage(UIImage(systemName: "video.circle.fill"), for: .normal)
+                cityNameCell.favouriteButton.setImage(UIImage(systemName: "video.fill"), for: .normal)
             } else {
-                cityNameCell.favouriteButton.setImage(UIImage(systemName: "video.circle"), for: .normal)
+                cityNameCell.favouriteButton.setImage(UIImage(systemName: "video"), for: .normal)
             }
             
             // Action when user taps favourite button on cell.
             
             cityNameCell.actionBlock = {
-                if cityNameCell.favouriteButton.currentImage! == UIImage(systemName: "video.circle"){
+                if cityNameCell.favouriteButton.currentImage! == UIImage(systemName: "video"){
 //                    for value in self.arrayOfFavourites {
 //                        if value == true {
 //                            self.counter += 1
@@ -263,7 +263,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
 //                            break
 //                        }
 //                    }
-                    cityNameCell.favouriteButton.setImage(UIImage(systemName: "video.circle.fill"), for: .normal)
+                    cityNameCell.favouriteButton.setImage(UIImage(systemName: "video.fill"), for: .normal)
                     FavouriteCities.addFavouriteCity(name: cityNameCell.cityName.text!, latitude: self.arrayOfAnotations[indexPath.row].coordinate.latitude, longitude: self.arrayOfAnotations[indexPath.row].coordinate.longitude, context: self.context)
                     self.arrayOfFavourites[indexPath.row] = true
                     
@@ -290,7 +290,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
 //
 //                    self.counter = 0
                     
-                } else if cityNameCell.favouriteButton.currentImage! == UIImage(systemName: "video.circle.fill") {
+                } else if cityNameCell.favouriteButton.currentImage! == UIImage(systemName: "video.fill") {
 //                    for value in self.arrayOfFavourites {
 //                        if value == true {
 //                            self.counter += 1
@@ -298,7 +298,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
 //                            break
 //                        }
 //                    }
-                    cityNameCell.favouriteButton.setImage(UIImage(systemName: "video.circle"), for: .normal)
+                    cityNameCell.favouriteButton.setImage(UIImage(systemName: "video"), for: .normal)
                     FavouriteCities.deleteFavouriteCity(latitude: self.arrayOfAnotations[indexPath.row].coordinate.latitude, longitude: self.arrayOfAnotations[indexPath.row].coordinate.longitude, into: self.context)
                     self.arrayOfFavourites[indexPath.row] = false
                     try? self.context.save()
