@@ -16,7 +16,7 @@ class WebCamInfoTableViewController: UITableViewController {
     var names = String()
     
     var heightForHeader = 5
-
+    
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
@@ -28,14 +28,14 @@ class WebCamInfoTableViewController: UITableViewController {
         
         self.title = names
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return webCams.count
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 1
@@ -47,31 +47,39 @@ class WebCamInfoTableViewController: UITableViewController {
     
     private var font: UIFont {
         return UIFontMetrics(forTextStyle: .body).scaledFont(for: UIFont.preferredFont(forTextStyle: .body).withSize(16.0))
-      }
-
+    }
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WebCamInfoCell", for: indexPath)
-    
+        
         let attrText = NSAttributedString(string: webCams[indexPath.section].title, attributes: [.font: font])
         cell.textLabel?.attributedText = attrText
-
+        
         cell.imageView!.image = webCams[indexPath.section].image
-
+        
         cell.imageView?.layer.borderWidth = 1.0
         cell.imageView?.layer.borderColor = UIColor.darkGray.cgColor
-
+        
         cell.imageView?.layer.cornerRadius = 10
-  
-
+        
+        
         // Configure the cell...
-
+        
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let url = URL(string: webCams[indexPath.section].link)!
-        UIApplication.shared.open(url, options: [:])
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "showWebCamLink":
+                if let webCamLinkVC = segue.destination.contents as? WebCameraLinkViewController {
+                    if let indexPath = tableView.indexPathForSelectedRow {
+                    webCamLinkVC.webCamURL = URL(string: webCams[indexPath.section].link)!
+                    }
+                }
+            default: break
+            }
+        }
     }
-
 }

@@ -35,8 +35,6 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var webCamInfo = WebCamInfo()
     
- //   var counter = 0
-    
     @IBAction func searchButton(_ sender: Any) {
      let searchController = UISearchController()
         searchController.searchBar.delegate = self
@@ -256,67 +254,16 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
             
             cityNameCell.actionBlock = {
                 if cityNameCell.favouriteButton.currentImage! == UIImage(systemName: "video"){
-//                    for value in self.arrayOfFavourites {
-//                        if value == true {
-//                            self.counter += 1
-//                        } else {
-//                            break
-//                        }
-//                    }
                     cityNameCell.favouriteButton.setImage(UIImage(systemName: "video.fill"), for: .normal)
                     FavouriteCities.addFavouriteCity(name: cityNameCell.cityName.text!, latitude: self.arrayOfAnotations[indexPath.row].coordinate.latitude, longitude: self.arrayOfAnotations[indexPath.row].coordinate.longitude, context: self.context)
                     self.arrayOfFavourites[indexPath.row] = true
                     
                     try? self.context.save()
-                    
-                    // Move row to the top of tableview when its added to favourites, below other favourites. Otherwise, remove it from favourites and put it below favourites.
-                    
-//                    self.citiesTableView.beginUpdates()
-//
-//                    self.citiesTableView.moveRow(at: indexPath, to: IndexPath(row: self.counter, section: 0))
-//
-//                    self.citiesTableView.endUpdates()
-//
-//                    self.arrayOfFavourites.insert(self.arrayOfFavourites.remove(at: indexPath.row), at: self.counter)
-//                    self.arrayOfPinsNames.insert(self.arrayOfPinsNames.remove(at: indexPath.row), at: self.counter)
-//                    self.arrayOfAnotations.insert(self.arrayOfAnotations.remove(at: indexPath.row), at: self.counter)
-//                    self.arrayOfPinsCLLocations.insert(self.arrayOfPinsCLLocations.remove(at: indexPath.row), at: self.counter)
-//
-//                    self.citiesTableView.reloadData()
-//
-//                    let indxPath = NSIndexPath(row: self.counter, section: 0)
-//
-//                    self.citiesTableView.scrollToRow(at: indxPath as IndexPath, at: .top, animated: true)
-//
-//                    self.counter = 0
-                    
                 } else if cityNameCell.favouriteButton.currentImage! == UIImage(systemName: "video.fill") {
-//                    for value in self.arrayOfFavourites {
-//                        if value == true {
-//                            self.counter += 1
-//                        } else {
-//                            break
-//                        }
-//                    }
                     cityNameCell.favouriteButton.setImage(UIImage(systemName: "video"), for: .normal)
                     FavouriteCities.deleteFavouriteCity(latitude: self.arrayOfAnotations[indexPath.row].coordinate.latitude, longitude: self.arrayOfAnotations[indexPath.row].coordinate.longitude, into: self.context)
                     self.arrayOfFavourites[indexPath.row] = false
                     try? self.context.save()
-                    
-//                    self.citiesTableView.beginUpdates()
-//
-//                    self.citiesTableView.moveRow(at: indexPath, to: IndexPath(row: self.counter - 1, section: 0))
-//
-//                    self.citiesTableView.endUpdates()
-//
-//                    self.arrayOfFavourites.insert(self.arrayOfFavourites.remove(at: indexPath.row), at: self.counter - 1)
-//                    self.arrayOfPinsNames.insert(self.arrayOfPinsNames.remove(at: indexPath.row), at: self.counter - 1)
-//                    self.arrayOfAnotations.insert(self.arrayOfAnotations.remove(at: indexPath.row), at: self.counter - 1)
-//                    self.arrayOfPinsCLLocations.insert(self.arrayOfPinsCLLocations.remove(at: indexPath.row), at: self.counter - 1)
-//
-//                    self.citiesTableView.reloadData()
-//
-//                    self.counter = 0
                 }
             }
         }

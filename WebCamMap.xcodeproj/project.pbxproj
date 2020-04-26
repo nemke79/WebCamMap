@@ -19,6 +19,8 @@
 		DF6C45E8244F25040065C1ED /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6C45E7244F25040065C1ED /* InfoViewController.swift */; };
 		DF8E910F243CC39C00CD2C69 /* WebCamInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8E910E243CC39C00CD2C69 /* WebCamInfo.swift */; };
 		DF981054243F90C900953E92 /* CityNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF981053243F90C900953E92 /* CityNameCell.swift */; };
+		DF9A0A9F2454A578000D4A5F /* WebCameraLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9A0A9E2454A578000D4A5F /* WebCameraLinkViewController.swift */; };
+		DF9A0AA22455D6EA000D4A5F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF9A0AA12455D6EA000D4A5F /* WebKit.framework */; };
 		DFABF2292437A0520019B04E /* WebCamMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABF2282437A0520019B04E /* WebCamMapViewController.swift */; };
 		DFB057032441CFE300F1F900 /* FavouriteCities.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB057022441CFE300F1F900 /* FavouriteCities.swift */; };
 /* End PBXBuildFile section */
@@ -50,6 +52,8 @@
 		DF6C45E7244F25040065C1ED /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		DF8E910E243CC39C00CD2C69 /* WebCamInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCamInfo.swift; sourceTree = "<group>"; };
 		DF981053243F90C900953E92 /* CityNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityNameCell.swift; sourceTree = "<group>"; };
+		DF9A0A9E2454A578000D4A5F /* WebCameraLinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCameraLinkViewController.swift; sourceTree = "<group>"; };
+		DF9A0AA12455D6EA000D4A5F /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		DFABF2282437A0520019B04E /* WebCamMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCamMapViewController.swift; sourceTree = "<group>"; };
 		DFB057022441CFE300F1F900 /* FavouriteCities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -59,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF9A0AA22455D6EA000D4A5F /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,7 @@
 				DF01E4752434C29A005F9117 /* WebCamMap */,
 				DF6C45DC24473B390065C1ED /* WebCamMapTests */,
 				DF01E4742434C29A005F9117 /* Products */,
+				DF9A0AA02455D6EA000D4A5F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +107,7 @@
 				DF01E4762434C29A005F9117 /* AppDelegate.swift */,
 				DF01E4782434C29A005F9117 /* SceneDelegate.swift */,
 				DF01E49F2434C3A6005F9117 /* Main.storyboard */,
+				DF9A0A9E2454A578000D4A5F /* WebCameraLinkViewController.swift */,
 				DF6C45E7244F25040065C1ED /* InfoViewController.swift */,
 				DF01E4A32437435C005F9117 /* WebCamInfoTableViewController.swift */,
 				DF01E4822434C29F005F9117 /* Assets.xcassets */,
@@ -118,6 +125,14 @@
 				DF6C45DF24473B390065C1ED /* Info.plist */,
 			);
 			path = WebCamMapTests;
+			sourceTree = "<group>";
+		};
+		DF9A0AA02455D6EA000D4A5F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DF9A0AA12455D6EA000D4A5F /* WebKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,6 +239,7 @@
 				DF01E4772434C29A005F9117 /* AppDelegate.swift in Sources */,
 				DF01E4792434C29A005F9117 /* SceneDelegate.swift in Sources */,
 				DF981054243F90C900953E92 /* CityNameCell.swift in Sources */,
+				DF9A0A9F2454A578000D4A5F /* WebCameraLinkViewController.swift in Sources */,
 				DF01E4A42437435C005F9117 /* WebCamInfoTableViewController.swift in Sources */,
 				DFABF2292437A0520019B04E /* WebCamMapViewController.swift in Sources */,
 				DF8E910F243CC39C00CD2C69 /* WebCamInfo.swift in Sources */,

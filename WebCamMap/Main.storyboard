@@ -190,6 +190,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="t2x-Mi-wzd" kind="show" identifier="showWebCamLink" id="OOE-OJ-CPr"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -202,6 +205,61 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b0V-1d-Cwr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1967" y="76"/>
+        </scene>
+        <!--Web Camera Link View Controller-->
+        <scene sceneID="iAm-wG-8l3">
+            <objects>
+                <viewController id="t2x-Mi-wzd" customClass="WebCameraLinkViewController" customModule="WebCamMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="D9j-g6-5PV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ltU-cj-PNv">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0d6-9s-I0G">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <progressView opaque="NO" contentMode="scaleAspectFit" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vaB-92-JJI">
+                                <rect key="frame" x="132" y="447" width="150" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Mhz-ed-eiK"/>
+                                </constraints>
+                                <color key="progressTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </progressView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ltU-cj-PNv" firstAttribute="leading" secondItem="Bzf-cR-4f9" secondAttribute="leading" id="31F-gl-0Th"/>
+                            <constraint firstItem="0d6-9s-I0G" firstAttribute="leading" secondItem="Bzf-cR-4f9" secondAttribute="leading" id="Fis-9m-3pM"/>
+                            <constraint firstItem="Bzf-cR-4f9" firstAttribute="bottom" secondItem="0d6-9s-I0G" secondAttribute="bottom" id="I3e-3U-LCm"/>
+                            <constraint firstItem="0d6-9s-I0G" firstAttribute="centerX" secondItem="D9j-g6-5PV" secondAttribute="centerX" id="IB1-c4-dJS"/>
+                            <constraint firstItem="vaB-92-JJI" firstAttribute="centerY" secondItem="D9j-g6-5PV" secondAttribute="centerY" id="QhR-BL-bTL"/>
+                            <constraint firstItem="0d6-9s-I0G" firstAttribute="top" secondItem="Bzf-cR-4f9" secondAttribute="top" id="UdR-RC-Wj1"/>
+                            <constraint firstItem="Bzf-cR-4f9" firstAttribute="trailing" secondItem="ltU-cj-PNv" secondAttribute="trailing" id="XYY-ly-Dzb"/>
+                            <constraint firstItem="vaB-92-JJI" firstAttribute="centerX" secondItem="D9j-g6-5PV" secondAttribute="centerX" id="b52-fw-J6G"/>
+                            <constraint firstItem="Bzf-cR-4f9" firstAttribute="bottom" secondItem="ltU-cj-PNv" secondAttribute="bottom" id="lnp-cM-jih"/>
+                            <constraint firstItem="Bzf-cR-4f9" firstAttribute="trailing" secondItem="0d6-9s-I0G" secondAttribute="trailing" id="u1x-V1-1BR"/>
+                            <constraint firstItem="ltU-cj-PNv" firstAttribute="top" secondItem="Bzf-cR-4f9" secondAttribute="top" id="vrh-83-4HS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Bzf-cR-4f9"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5VA-fg-aHV"/>
+                    <connections>
+                        <outlet property="progressView" destination="vaB-92-JJI" id="P6q-QC-Z3a"/>
+                        <outlet property="viewForBackgroundWhileLoading" destination="0d6-9s-I0G" id="4Ay-aa-o54"/>
+                        <outlet property="webView" destination="ltU-cj-PNv" id="ioO-tU-8vn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cya-M1-lCL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3021" y="94"/>
         </scene>
     </scenes>
     <resources>
