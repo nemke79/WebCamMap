@@ -21,7 +21,6 @@ class WebCameraLinkViewController: UIViewController, WKUIDelegate, WKNavigationD
     
     var newView: WKWebView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,6 +38,28 @@ class WebCameraLinkViewController: UIViewController, WKUIDelegate, WKNavigationD
             let request = URLRequest(url: url)
             webView.load(request)
         }
+    }
+    
+    // view needs to reload when coming back from another app, else we will have messed up view, so we use NSNotification.
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(willEnterForeground(_:)),
+            name: UIApplication.willEnterForegroundNotification,
+            object: nil)
+    }
+    
+    @objc func willEnterForeground(_ notification: NSNotification) {
+        webView.reload()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress))
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -60,20 +81,20 @@ class WebCameraLinkViewController: UIViewController, WKUIDelegate, WKNavigationD
     //This handles target=_blank links by opening them in the new view.
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
         if navigationAction.targetFrame == nil {
-        newView = WKWebView.init(frame: webView.frame, configuration: configuration)
-
-                  newView.customUserAgent = webView.customUserAgent
-                  newView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-                  newView.navigationDelegate = self
-                  newView.uiDelegate = self
-
-                  self.view.addSubview(newView)
-
-                  newView.configuration.preferences.javaScriptCanOpenWindowsAutomatically = true
-                  newView.configuration.preferences.javaScriptEnabled = true
-                  newView.load(navigationAction.request)
-
-                  return newView
+            newView = WKWebView.init(frame: webView.frame, configuration: configuration)
+            
+            newView.customUserAgent = webView.customUserAgent
+            newView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            newView.navigationDelegate = self
+            newView.uiDelegate = self
+            
+            self.view.addSubview(newView)
+            
+            newView.configuration.preferences.javaScriptCanOpenWindowsAutomatically = true
+            newView.configuration.preferences.javaScriptEnabled = true
+            newView.load(navigationAction.request)
+            
+            return newView
         }
         return nil
     }
@@ -90,27 +111,27 @@ class WebCameraLinkViewController: UIViewController, WKUIDelegate, WKNavigationD
         let urlElements = url?.components(separatedBy: ":") ?? []
         
         switch urlElements[0] {
-           case "mailto":
-               UIApplication.shared.open(navigationAction.request.url!, options: [:], completionHandler: nil)
-               decisionHandler(.cancel)
+        case "mailto":
+            UIApplication.shared.open(navigationAction.request.url!, options: [:], completionHandler: nil)
+            decisionHandler(.cancel)
             return
         case "AddThis":
             UIApplication.shared.open(navigationAction.request.url!, options: [:], completionHandler: nil)
-               decisionHandler(.cancel)
+            decisionHandler(.cancel)
             return
-           default:
-                switch navigationAction.navigationType {
-                      case .linkActivated:
-                      
-                          UIApplication.shared.open(navigationAction.request.url!, options: [:], completionHandler: nil)
-                          decisionHandler(.cancel)
-                          return
-                      default:
-                          break
-                      }
-                  }
+        default:
+            switch navigationAction.navigationType {
+            case .linkActivated:
+                
+                UIApplication.shared.open(navigationAction.request.url!, options: [:], completionHandler: nil)
+                decisionHandler(.cancel)
+                return
+            default:
+                break
+            }
+        }
         decisionHandler(.allow)
-           }
+    }
 }
 
 extension UIView {
