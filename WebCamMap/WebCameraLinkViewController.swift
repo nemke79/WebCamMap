@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class WebCameraLinkViewController: UIViewController, WKNavigationDelegate {
+class WebCameraLinkViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
     
     @IBOutlet weak var webView: WKWebView!
     
@@ -19,11 +19,14 @@ class WebCameraLinkViewController: UIViewController, WKNavigationDelegate {
     
     @IBOutlet weak var viewForBackgroundWhileLoading: UIView!
     
+    var newView: WKWebView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         webView.navigationDelegate = self
+        webView.uiDelegate = self
         
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
         
@@ -34,7 +37,6 @@ class WebCameraLinkViewController: UIViewController, WKNavigationDelegate {
         
         if let url = webCamURL {
             let request = URLRequest(url: url)
-            print(url)
             webView.load(request)
         }
     }
@@ -54,6 +56,61 @@ class WebCameraLinkViewController: UIViewController, WKNavigationDelegate {
         progressView.isHidden = true
         viewForBackgroundWhileLoading.fadeOut()
     }
+    
+    //This handles target=_blank links by opening them in the new view.
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        if navigationAction.targetFrame == nil {
+        newView = WKWebView.init(frame: webView.frame, configuration: configuration)
+
+                  newView.customUserAgent = webView.customUserAgent
+                  newView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                  newView.navigationDelegate = self
+                  newView.uiDelegate = self
+
+                  self.view.addSubview(newView)
+
+                  newView.configuration.preferences.javaScriptCanOpenWindowsAutomatically = true
+                  newView.configuration.preferences.javaScriptEnabled = true
+                  newView.load(navigationAction.request)
+
+                  return newView
+        }
+        return nil
+    }
+    
+    // When popup for addthis is closed by x button, close popup.
+    func webViewDidClose(_ webView: WKWebView) {
+        webView.removeFromSuperview()
+        newView = nil
+    }
+    
+    //Open long tapped event on short tap to avoid error, also open mailapp when user taps on mail icon.
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: ((WKNavigationActionPolicy) -> Void)) {
+        let url = navigationAction.request.url?.absoluteString
+        let urlElements = url?.components(separatedBy: ":") ?? []
+        
+        switch urlElements[0] {
+           case "mailto":
+               UIApplication.shared.open(navigationAction.request.url!, options: [:], completionHandler: nil)
+               decisionHandler(.cancel)
+            return
+        case "AddThis":
+            UIApplication.shared.open(navigationAction.request.url!, options: [:], completionHandler: nil)
+               decisionHandler(.cancel)
+            return
+           default:
+                switch navigationAction.navigationType {
+                      case .linkActivated:
+                      
+                          UIApplication.shared.open(navigationAction.request.url!, options: [:], completionHandler: nil)
+                          decisionHandler(.cancel)
+                          return
+                      default:
+                          break
+                      }
+                  }
+        decisionHandler(.allow)
+           }
 }
 
 extension UIView {
