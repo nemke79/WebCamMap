@@ -9,13 +9,13 @@
 import UIKit
 
 class CityNameCell: UITableViewCell {
-
+    
     @IBOutlet weak var cityName: UILabel!
     
     @IBOutlet weak var favouriteButton: UIButton!
     
     // For creating action on button tap inside cell
-      var actionBlock: (() -> Void)? = nil
+    var actionBlock: (() -> Void)? = nil
     
     @IBAction func favouriteButtonTapped(_ sender: Any) {
         actionBlock?()
@@ -25,11 +25,10 @@ class CityNameCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
 }

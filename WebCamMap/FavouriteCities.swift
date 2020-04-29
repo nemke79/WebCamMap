@@ -11,10 +11,11 @@ import CoreData
 
 class FavouriteCities: NSManagedObject {
     
+    // Working with CoreData.
     class func addFavouriteCity(name: String, latitude: Double, longitude: Double, context: NSManagedObjectContext) {
         let request: NSFetchRequest<FavouriteCities> = FavouriteCities.fetchRequest()
         
-        //In predicate we use long float - lf for compare because otherwise values that are compared never will be the same, because float and double precision is not 100%.
+        // In predicate we use long float - lf for compare because otherwise values that are compared never will be the same, because float and double precision is not 100%.
         request.predicate = NSPredicate(format: "latitude == %lf AND longitude == %lf", latitude, longitude)
         request.sortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: true)]
         let favouriteCity = try? context.fetch(request)
@@ -31,11 +32,11 @@ class FavouriteCities: NSManagedObject {
     class func deleteFavouriteCity(latitude: Double, longitude: Double, into context: NSManagedObjectContext ) {
         let request: NSFetchRequest<FavouriteCities> = FavouriteCities.fetchRequest()
         
-        //In predicate we use long float - lf for compare because otherwise values that are compared never will be the same, because float and double precision is not 100%.
+        // In predicate we use long float - lf for compare because otherwise values that are compared never will be the same, because float and double precision is not 100%.
         request.predicate = NSPredicate(format: "latitude == %lf AND longitude == %lf", latitude, longitude)
         request.sortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: true)]
         let favouriteCity = try? context.fetch(request)
-
+        
         if favouriteCity!.count > 0 {
             context.delete(favouriteCity!.first!)
         }

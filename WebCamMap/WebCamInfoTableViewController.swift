@@ -10,7 +10,6 @@ import UIKit
 
 class WebCamInfoTableViewController: UITableViewController {
     
-    
     // Initializing webCams dictionary.
     var webCams = [WebCamInfo]()
     var names = String()
@@ -30,7 +29,6 @@ class WebCamInfoTableViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return webCams.count
@@ -75,7 +73,7 @@ class WebCamInfoTableViewController: UITableViewController {
             case "showWebCamLink":
                 if let webCamLinkVC = segue.destination.contents as? WebCameraLinkViewController {
                     if let indexPath = tableView.indexPathForSelectedRow {
-                    webCamLinkVC.webCamURL = URL(string: webCams[indexPath.section].link)!
+                        webCamLinkVC.webCamURL = URL(string: webCams[indexPath.section].link)!
                     }
                 }
             default: break

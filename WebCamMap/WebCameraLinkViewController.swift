@@ -21,6 +21,8 @@ class WebCameraLinkViewController: UIViewController, WKUIDelegate, WKNavigationD
     
     var newView: WKWebView!
     
+    
+    // MARK: ViewController lifecycle methods.
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,7 +42,7 @@ class WebCameraLinkViewController: UIViewController, WKUIDelegate, WKNavigationD
         }
     }
     
-    // view needs to reload when coming back from another app, else we will have messed up view, so we use NSNotification.
+    // View needs to reload when coming back from another app, else we will have messed up view, so we use NSNotification.
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -61,7 +63,7 @@ class WebCameraLinkViewController: UIViewController, WKUIDelegate, WKNavigationD
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
+        
         NotificationCenter.default.removeObserver(self)
     }
     
@@ -71,6 +73,8 @@ class WebCameraLinkViewController: UIViewController, WKUIDelegate, WKNavigationD
         }
     }
     
+    
+    // MARK: WebView methods.
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         progressView.isHidden = true
         viewForBackgroundWhileLoading.fadeOut()
@@ -81,7 +85,7 @@ class WebCameraLinkViewController: UIViewController, WKUIDelegate, WKNavigationD
         viewForBackgroundWhileLoading.fadeOut()
     }
     
-    //This handles target=_blank links by opening them in the new view.
+    // This handles target=_blank links by opening them in the new view.
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
         if navigationAction.targetFrame == nil {
             newView = WKWebView.init(frame: webView.frame, configuration: configuration)
@@ -107,9 +111,9 @@ class WebCameraLinkViewController: UIViewController, WKUIDelegate, WKNavigationD
         webView.removeFromSuperview()
         newView = nil
     }
-
     
-    //Open long tapped event on short tap to avoid error, also open mailapp when user taps on mail icon.
+    
+    // Open long tapped event on short tap to avoid error, also open mailapp when user taps on mail icon.
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: ((WKNavigationActionPolicy) -> Void)) {
         let url = navigationAction.request.url?.absoluteString
         let urlElements = url?.components(separatedBy: ":") ?? []

@@ -102,7 +102,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     // List of cities added.
     @IBOutlet weak var citiesTableView: UITableView!
     
-    //MARK: ViewController lifecycle methods.
+    // MARK: ViewController lifecycle methods.
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -131,7 +131,6 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
         // Check for Location Services
-        
         if CLLocationManager.locationServicesEnabled() {
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation()
@@ -181,7 +180,6 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     // Gesture for adding pins to map
-    
     @objc func tapGestureHandler(tgr: UITapGestureRecognizer)
     {
         if !Reachability.isConnectedToNetwork() {
@@ -239,7 +237,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         return UIFontMetrics(forTextStyle: .body).scaledFont(for: UIFont.preferredFont(forTextStyle: .body).withSize(18.0))
     }
     
-    //MARK: TableView methods.
+    // MARK: TableView methods.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrayOfPinsNames.count
     }
@@ -260,7 +258,6 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
             }
             
             // Action when user taps favourite button on cell.
-            
             cityNameCell.actionBlock = {
                 if cityNameCell.favouriteButton.currentImage! == UIImage(systemName: "video"){
                     cityNameCell.favouriteButton.setImage(UIImage(systemName: "video.fill"), for: .normal)
