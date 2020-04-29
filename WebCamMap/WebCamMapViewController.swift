@@ -208,7 +208,15 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
             geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
                 // Process Response
                 if let error = error {
-                    print("Unable to Reverse Geocode Location (\(error))")
+                    print("Unable to Reverse Geocode Location (\(error.localizedDescription))")
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "Web Cams Info", message: "We don't have enough information about this location, please choose another location.", preferredStyle: .alert)
+                        
+                        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+                            return
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                    }
                 } else {
                     if let placemarks = placemarks, let placemark = placemarks.first {
                         self.arrayOfPinsNames.append("\(placemark.locality ?? placemark.name ?? placemark.country ?? placemark.ocean ?? "Unknown location") \(placemark.country ?? "")")

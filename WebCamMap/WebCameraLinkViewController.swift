@@ -55,10 +55,13 @@ class WebCameraLinkViewController: UIViewController, WKUIDelegate, WKNavigationD
         webView.reload()
     }
     
+    deinit {
+        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress))
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress))
+
         NotificationCenter.default.removeObserver(self)
     }
     
@@ -104,6 +107,7 @@ class WebCameraLinkViewController: UIViewController, WKUIDelegate, WKNavigationD
         webView.removeFromSuperview()
         newView = nil
     }
+
     
     //Open long tapped event on short tap to avoid error, also open mailapp when user taps on mail icon.
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: ((WKNavigationActionPolicy) -> Void)) {
@@ -112,10 +116,6 @@ class WebCameraLinkViewController: UIViewController, WKUIDelegate, WKNavigationD
         
         switch urlElements[0] {
         case "mailto":
-            UIApplication.shared.open(navigationAction.request.url!, options: [:], completionHandler: nil)
-            decisionHandler(.cancel)
-            return
-        case "AddThis":
             UIApplication.shared.open(navigationAction.request.url!, options: [:], completionHandler: nil)
             decisionHandler(.cancel)
             return
