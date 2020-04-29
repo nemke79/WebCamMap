@@ -36,11 +36,11 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     var webCamInfo = WebCamInfo()
     
     @IBAction func searchButton(_ sender: Any) {
-     let searchController = UISearchController()
+        let searchController = UISearchController()
         searchController.searchBar.delegate = self
         present(searchController, animated: true, completion: nil)
     }
-
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         citiesTableView.isUserInteractionEnabled = false
         mapView.isUserInteractionEnabled = false
@@ -102,7 +102,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     // List of cities added.
     @IBOutlet weak var citiesTableView: UITableView!
     
-    
+    //MARK: ViewController lifecycle methods.
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -111,11 +111,11 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         
         if !Reachability.isConnectedToNetwork() {
             let alert = UIAlertController(title: "Web Cams Info", message: "You have network problem. Please try again later.", preferredStyle: .alert)
-                                   
-                                   alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
-                                       return
-                                   }))
-                                   self.present(alert, animated: true, completion: nil)
+            
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+                return
+            }))
+            self.present(alert, animated: true, completion: nil)
         }
         
         citiesTableView.dataSource = self
@@ -239,6 +239,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         return UIFontMetrics(forTextStyle: .body).scaledFont(for: UIFont.preferredFont(forTextStyle: .body).withSize(18.0))
     }
     
+    //MARK: TableView methods.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrayOfPinsNames.count
     }
@@ -314,6 +315,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    //MARK: Segues.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             switch identifier {
