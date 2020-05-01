@@ -77,11 +77,19 @@ class TutorialPageViewController: UIPageViewController, UIPageViewControllerDele
     
     // Next two methods needed for page control - 3 dots.
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
+        setupPageControl()
         return self.pages.count
     }
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return 0
+    }
+    
+    private func setupPageControl() {
+        let appearance = UIPageControl.appearance()
+        appearance.pageIndicatorTintColor = .gray
+        appearance.currentPageIndicatorTintColor = #colorLiteral(red: 1, green: 0.764875771, blue: 0.2167999077, alpha: 1)
+        appearance.backgroundColor = .darkGray
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
