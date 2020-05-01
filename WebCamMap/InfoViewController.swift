@@ -1,5 +1,5 @@
 //
-//  InfoWebCamMapViewController.swift
+//  InfoViewController.swift
 //  WebCamMap
 //
 //  Created by Nemanja Petrovic on 21/04/2020.
@@ -9,7 +9,7 @@
 import UIKit
 
 class InfoViewController: UIViewController {
-    private let howToUseText = "\n\nWebCamMap uses API from api.windy.com to show webcams around the world.\n\nSearch for the location on map, or drag map to desired location. Then you can select point on map, and below map is the list of selected locations. If you click on any element of that list, and if there are any webcams within 20km of selected location, app will show it. You can then click on webcam you want and app will open browser and go to api.windy.com to show you that webcam you've selected. There you can see day timelapse of that webcam.\n\nAlso, you can add to favourites locations which webcams you like. You add location to favourites by clicking on movie image which is positioned on the right of every element(location) in the list - movie image will become filled.Favourites are automatically saved in the phone storage. When you open app again, favourites are there.\n\nYou want to remove location from favourites? Click again on movie image, and location is removed from favourites - movie image is not filled anymore. You can also remove locations by swiping them to the left - they will be removed from list and from storage if location is favourite."
+    private let howToUseText = "\n\nWebCamMap uses API from api.windy.com to show webcams around the world. All webcams are provided by windy.com.\n\nSearch for the location on map, or drag map to desired location. Then you can select point on map, and below map is the list of selected locations. If you click on any element of that list, and if there are any webcams within 20km of selected location, app will show it. You can then click on webcam you want and app will open browser and go to api.windy.com to show you that webcam you've selected. There you can see day timelapse of that webcam.\n\nAlso, you can add to favourites locations which webcams you like. You add location to favourites by clicking on movie image which is positioned on the right of every element(location) in the list - movie image will become filled.Favourites are automatically saved in the phone storage. When you open app again, favourites are there.\n\nYou want to remove location from favourites? Click again on movie image, and location is removed from favourites - movie image is not filled anymore. You can also remove locations by swiping them to the left - they will be removed from list and from storage if location is favourite."
     
     private let rateWebCamMapText = "\n\nLeave your review and rate WebCamMap in App Store."
     

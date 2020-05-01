@@ -217,7 +217,11 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                     }
                 } else {
                     if let placemarks = placemarks, let placemark = placemarks.first {
-                        self.arrayOfPinsNames.append("\(placemark.locality ?? placemark.name ?? placemark.country ?? placemark.ocean ?? "Unknown location") \(placemark.country ?? "")")
+                        if placemark.locality != nil, placemark.name != nil {
+                            self.arrayOfPinsNames.append("\(placemark.locality!), \(placemark.name!), \(placemark.country ?? "")")
+                        } else {
+                            self.arrayOfPinsNames.append("\(placemark.locality ?? placemark.name ?? placemark.country ?? placemark.ocean ?? "Unknown location"), \(placemark.country ?? "")")
+                        }
                         self.arrayOfPinsCLLocations.append(placemark.location!)
                         
                         self.arrayOfFavourites.append(false)
