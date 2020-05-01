@@ -68,18 +68,45 @@
                                 <rect key="frame" x="188.5" y="596" width="37" height="37"/>
                                 <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
+                            <containerView opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zgy-N2-v3q">
+                                <rect key="frame" x="25" y="113" width="364" height="724"/>
+                                <connections>
+                                    <segue destination="6VS-0x-V1v" kind="embed" id="3XY-2X-BPP"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4u-Ei-8JF">
+                                <rect key="frame" x="326" y="128" width="44" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="Wy7-ee-lSt"/>
+                                    <constraint firstAttribute="width" constant="44" id="lLx-sv-Cdn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Close">
+                                    <color key="titleColor" red="1" green="0.76487577100000004" blue="0.21679990769999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="closeButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="heL-hH-6Uk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="zef-T7-x9o" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.5" id="5Wi-6q-Aaf"/>
+                            <constraint firstItem="Zgy-N2-v3q" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="BB8-yb-Pc6"/>
                             <constraint firstItem="adg-lT-OgH" firstAttribute="top" secondItem="zef-T7-x9o" secondAttribute="bottom" constant="60" id="CNI-WI-Soq"/>
                             <constraint firstItem="O98-Bf-jfE" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="CdK-1f-n4W"/>
                             <constraint firstItem="adg-lT-OgH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ewb-jE-t9B"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zef-T7-x9o" secondAttribute="trailing" id="IDZ-yX-4kV"/>
+                            <constraint firstItem="Zgy-N2-v3q" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="LO3-X3-Vvv"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="b4u-Ei-8JF" secondAttribute="trailing" constant="44" id="ODN-QN-TLj"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="O98-Bf-jfE" secondAttribute="trailing" id="PbG-6l-A7F"/>
                             <constraint firstItem="O98-Bf-jfE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="TVg-aO-d6l"/>
+                            <constraint firstItem="b4u-Ei-8JF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="dBe-Ut-fXK"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Zgy-N2-v3q" secondAttribute="trailing" constant="25" id="dEn-FJ-qfl"/>
                             <constraint firstItem="zef-T7-x9o" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="h1o-Mq-wDP"/>
                             <constraint firstItem="zef-T7-x9o" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="huG-qP-vxD"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Zgy-N2-v3q" secondAttribute="bottom" constant="25" id="qUM-RF-IaF"/>
                             <constraint firstItem="O98-Bf-jfE" firstAttribute="top" secondItem="zef-T7-x9o" secondAttribute="bottom" constant="8" id="rcY-FA-Kyf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -100,6 +127,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="citiesTableView" destination="O98-Bf-jfE" id="Fra-dV-X2H"/>
+                        <outlet property="closeButton" destination="b4u-Ei-8JF" id="uUd-Qq-mEl"/>
+                        <outlet property="containerView" destination="Zgy-N2-v3q" id="hUe-Rh-c9Q"/>
                         <outlet property="mapView" destination="zef-T7-x9o" id="f35-a4-dyY"/>
                         <outlet property="spinner" destination="adg-lT-OgH" id="mW5-Pj-k0v"/>
                         <segue destination="A3z-qF-A62" kind="show" identifier="showWebCamInfo" id="DfI-2J-QAN"/>
@@ -126,6 +155,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xc5-K4-Qa9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-78.260869565217391" y="75.669642857142847"/>
+        </scene>
+        <!--Tutorial Page View Controller-->
+        <scene sceneID="tSP-SJ-DYo">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p3r-6M-LF1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <pageViewController storyboardIdentifier="TutorialPageViewController" autoresizesArchivedViewToFullSize="NO" modalTransitionStyle="flipHorizontal" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="6VS-0x-V1v" customClass="TutorialPageViewController" customModule="WebCamMap" customModuleProvider="target" sceneMemberID="viewController"/>
+            </objects>
+            <point key="canvasLocation" x="-9" y="937"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Tax-Kx-3pB">
+            <objects>
+                <viewController restorationIdentifier="TutorialFirstPageControllerR" storyboardIdentifier="TutorialFirstPageController" id="Vto-hx-Zd1" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7Dr-rh-ioH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WebCamMapIcon1024" translatesAutoresizingMaskIntoConstraints="NO" id="ghn-us-BA3">
+                                <rect key="frame" x="74" y="315" width="266" height="266"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="266" id="8ii-VR-fnl"/>
+                                    <constraint firstAttribute="width" constant="266" id="Qkc-ao-epZ"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ghn-us-BA3" firstAttribute="centerY" secondItem="7Dr-rh-ioH" secondAttribute="centerY" id="BsK-Uo-3rw"/>
+                            <constraint firstItem="ghn-us-BA3" firstAttribute="centerX" secondItem="7Dr-rh-ioH" secondAttribute="centerX" id="aTl-HR-IY4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="f04-yI-jlJ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2zb-Rh-FVk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-317" y="1540"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="OdS-FP-kgb">
@@ -158,7 +223,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TGU-tm-gQi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1420" y="763"/>
+            <point key="canvasLocation" x="2423" y="837"/>
         </scene>
         <!--Web Cam Info Table View Controller-->
         <scene sceneID="uuJ-Ld-5pl">
@@ -261,9 +326,64 @@
             </objects>
             <point key="canvasLocation" x="3021" y="94"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="aKq-m2-3D3">
+            <objects>
+                <viewController restorationIdentifier="TutorialSecondPageControllerR" storyboardIdentifier="TutorialSecondPageController" id="Dym-Za-Bea" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mXh-hd-kFW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OrangeGradientBackground" translatesAutoresizingMaskIntoConstraints="NO" id="j0E-YR-pY0">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="j0E-YR-pY0" firstAttribute="top" secondItem="bvn-HB-jxO" secondAttribute="top" id="JUe-fo-MEG"/>
+                            <constraint firstItem="bvn-HB-jxO" firstAttribute="trailing" secondItem="j0E-YR-pY0" secondAttribute="trailing" id="Vy7-jT-3DJ"/>
+                            <constraint firstItem="bvn-HB-jxO" firstAttribute="bottom" secondItem="j0E-YR-pY0" secondAttribute="bottom" id="anZ-nS-M7r"/>
+                            <constraint firstItem="j0E-YR-pY0" firstAttribute="leading" secondItem="bvn-HB-jxO" secondAttribute="leading" id="cQe-Ha-Kjz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bvn-HB-jxO"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hFF-kJ-Qcm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="461" y="1540"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="uT6-io-eKH">
+            <objects>
+                <viewController restorationIdentifier="TutorialThirdPageControllerR" storyboardIdentifier="TutorialThirdPageController" id="WXp-BN-hKz" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2zm-9t-sAc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient-background-blue" translatesAutoresizingMaskIntoConstraints="NO" id="rvQ-51-cvR">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Xek-aT-YvU" firstAttribute="bottom" secondItem="rvQ-51-cvR" secondAttribute="bottom" id="AMX-4W-YIQ"/>
+                            <constraint firstItem="rvQ-51-cvR" firstAttribute="top" secondItem="Xek-aT-YvU" secondAttribute="top" id="Ewa-ri-07Y"/>
+                            <constraint firstItem="Xek-aT-YvU" firstAttribute="trailing" secondItem="rvQ-51-cvR" secondAttribute="trailing" id="PiT-0y-H3M"/>
+                            <constraint firstItem="rvQ-51-cvR" firstAttribute="leading" secondItem="Xek-aT-YvU" secondAttribute="leading" id="ufk-Mk-KHd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Xek-aT-YvU"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oEK-KU-Yjx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1251" y="1540"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="OrangeGradientBackground" width="1920" height="1080"/>
+        <image name="WebCamMapIcon1024" width="1024" height="1024"/>
         <image name="camera" catalog="system" width="128" height="96"/>
+        <image name="gradient-background-blue" width="2400" height="2000"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="video" catalog="system" width="128" height="83"/>
     </resources>

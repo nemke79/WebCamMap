@@ -11,9 +11,26 @@ import MapKit
 import CoreLocation
 import CoreData
 
-class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UIPopoverPresentationControllerDelegate, UISearchControllerDelegate, UISearchBarDelegate {
+class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UIPopoverPresentationControllerDelegate, UISearchControllerDelegate, UISearchBarDelegate {    
+    
+    // ContainerView for TutorialPageViewController.
+    @IBOutlet weak var containerView: UIView!
+    
+    @IBOutlet weak var closeButton: UIButton!
+    
+    @IBAction func closeButtonPressed(_ sender: UIButton) {
+        sender.removeFromSuperview()
+        containerView.removeFromSuperview()
+        mapView.isUserInteractionEnabled = true
+        citiesTableView.isUserInteractionEnabled = true
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        mapView.alpha = 1.0
+        citiesTableView.alpha = 1.0
+    }
     
     private var favouriteCities: [FavouriteCities]?
+    
+    private var tutorialScreen = TutorialPageViewController()
     
     let cityCell = CityNameCell()
     
@@ -105,7 +122,21 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: ViewController lifecycle methods.
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        containerView.isHidden = true
         // Do any additional setup after loading the view.
+        
+        // If application is first time launched, then show tutorial screen.
+        if UIApplication.isFirstLaunch() {
+            mapView.alpha = 0.2
+            citiesTableView.alpha = 0.2
+            containerView.isHidden = false
+            mapView.isUserInteractionEnabled = false
+            citiesTableView.isUserInteractionEnabled = false
+            navigationController?.setNavigationBarHidden(true, animated: true)
+        } else {
+            closeButton.isHidden = true
+        }
         
         spinner?.stopAnimating()
         
@@ -217,7 +248,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                     }
                 } else {
                     if let placemarks = placemarks, let placemark = placemarks.first {
-                            self.arrayOfPinsNames.append("\(placemark.locality ?? placemark.name ?? placemark.country ?? placemark.ocean ?? "Unknown location"), \(placemark.country ?? "")")
+                        self.arrayOfPinsNames.append("\(placemark.locality ?? placemark.name ?? placemark.country ?? placemark.ocean ?? "Unknown location"), \(placemark.country ?? "")")
                         
                         self.arrayOfPinsCLLocations.append(placemark.location!)
                         
@@ -474,5 +505,16 @@ extension UIFont {
     
     func bold() -> UIFont {
         return withTraits(traits: .traitBold)
+    }
+}
+
+extension UIApplication {
+    static func isFirstLaunch() -> Bool {
+        if !UserDefaults.standard.bool(forKey: "HasLaunched") {
+            UserDefaults.standard.set(true, forKey: "HasLaunched")
+            UserDefaults.standard.synchronize()
+            return true
+        }
+        return false
     }
 }
