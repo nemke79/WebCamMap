@@ -28,8 +28,7 @@ class TutorialPageViewController: UIPageViewController, UIPageViewControllerDele
     fileprivate lazy var pages: [UIViewController] = {
         return [
             self.getViewController(withIdentifier: "TutorialFirstPageController"),
-            self.getViewController(withIdentifier: "TutorialSecondPageController"),
-            self.getViewController(withIdentifier: "TutorialThirdPageController")
+            self.getViewController(withIdentifier: "TutorialSecondPageController")
         ]
     }()
     
@@ -63,7 +62,6 @@ class TutorialPageViewController: UIPageViewController, UIPageViewControllerDele
         
         guard nextIndex < pages.count, self.isTransitioning == false
             else {
-                self.dismiss(animated: false, completion: nil)
                 return nil
         }
         

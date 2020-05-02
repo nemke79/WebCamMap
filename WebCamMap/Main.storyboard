@@ -68,8 +68,8 @@
                                 <rect key="frame" x="188.5" y="596" width="37" height="37"/>
                                 <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
-                            <containerView opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zgy-N2-v3q">
-                                <rect key="frame" x="25" y="113" width="364" height="724"/>
+                            <containerView opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zgy-N2-v3q">
+                                <rect key="frame" x="25" y="595" width="0.0" height="724"/>
                                 <connections>
                                     <segue destination="6VS-0x-V1v" kind="embed" id="3XY-2X-BPP"/>
                                 </connections>
@@ -82,7 +82,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Close">
-                                    <color key="titleColor" red="1" green="0.76487577100000004" blue="0.21679990769999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.86514514590000002" green="0.47006700579999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -172,25 +172,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WebCamMapIcon1024" translatesAutoresizingMaskIntoConstraints="NO" id="ghn-us-BA3">
-                                <rect key="frame" x="74" y="315" width="266" height="266"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="266" id="8ii-VR-fnl"/>
-                                    <constraint firstAttribute="width" constant="266" id="Qkc-ao-epZ"/>
-                                </constraints>
-                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="-50" translatesAutoresizingMaskIntoConstraints="NO" id="3KI-rh-Iaf">
+                                <rect key="frame" x="70.5" y="310" width="273.5" height="276"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WebCamMapIcon1024" translatesAutoresizingMaskIntoConstraints="NO" id="ghn-us-BA3">
+                                        <rect key="frame" x="7.5" y="0.0" width="266" height="266"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="266" id="8ii-VR-fnl"/>
+                                            <constraint firstAttribute="width" constant="266" id="Qkc-ao-epZ"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Welcome!    " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RvO-ir-Oks">
+                                        <rect key="frame" x="0.0" y="216" width="273.5" height="60"/>
+                                        <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="45"/>
+                                        <color key="textColor" red="0.86514514590000002" green="0.47006700576664856" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="ghn-us-BA3" firstAttribute="centerY" secondItem="7Dr-rh-ioH" secondAttribute="centerY" id="BsK-Uo-3rw"/>
-                            <constraint firstItem="ghn-us-BA3" firstAttribute="centerX" secondItem="7Dr-rh-ioH" secondAttribute="centerX" id="aTl-HR-IY4"/>
+                            <constraint firstItem="3KI-rh-Iaf" firstAttribute="centerX" secondItem="7Dr-rh-ioH" secondAttribute="centerX" id="8UY-SX-aRG"/>
+                            <constraint firstItem="3KI-rh-Iaf" firstAttribute="centerY" secondItem="7Dr-rh-ioH" secondAttribute="centerY" id="t9w-bd-GCO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="f04-yI-jlJ"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2zb-Rh-FVk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-317" y="1540"/>
+            <point key="canvasLocation" x="-317.39130434782612" y="1539.5089285714284"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="OdS-FP-kgb">
@@ -334,56 +346,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OrangeGradientBackground" translatesAutoresizingMaskIntoConstraints="NO" id="j0E-YR-pY0">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="-50" translatesAutoresizingMaskIntoConstraints="NO" id="cFa-Oj-9K6">
+                                <rect key="frame" x="58" y="310" width="298.5" height="276"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WebCamMapIcon1024" translatesAutoresizingMaskIntoConstraints="NO" id="lMX-le-yfP">
+                                        <rect key="frame" x="32.5" y="0.0" width="266" height="266"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="266" id="B9C-AY-nv3"/>
+                                            <constraint firstAttribute="width" constant="266" id="ob0-G8-8FM"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enjoy the app!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNx-LI-uEX">
+                                        <rect key="frame" x="0.0" y="216" width="298.5" height="60"/>
+                                        <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="45"/>
+                                        <color key="textColor" red="0.86514514590000002" green="0.47006700579999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="j0E-YR-pY0" firstAttribute="top" secondItem="bvn-HB-jxO" secondAttribute="top" id="JUe-fo-MEG"/>
-                            <constraint firstItem="bvn-HB-jxO" firstAttribute="trailing" secondItem="j0E-YR-pY0" secondAttribute="trailing" id="Vy7-jT-3DJ"/>
-                            <constraint firstItem="bvn-HB-jxO" firstAttribute="bottom" secondItem="j0E-YR-pY0" secondAttribute="bottom" id="anZ-nS-M7r"/>
-                            <constraint firstItem="j0E-YR-pY0" firstAttribute="leading" secondItem="bvn-HB-jxO" secondAttribute="leading" id="cQe-Ha-Kjz"/>
+                            <constraint firstItem="cFa-Oj-9K6" firstAttribute="centerY" secondItem="mXh-hd-kFW" secondAttribute="centerY" id="IWS-E9-N8j"/>
+                            <constraint firstItem="cFa-Oj-9K6" firstAttribute="centerX" secondItem="mXh-hd-kFW" secondAttribute="centerX" id="aec-uB-iuv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bvn-HB-jxO"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hFF-kJ-Qcm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="461" y="1540"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="uT6-io-eKH">
-            <objects>
-                <viewController restorationIdentifier="TutorialThirdPageControllerR" storyboardIdentifier="TutorialThirdPageController" id="WXp-BN-hKz" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="2zm-9t-sAc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient-background-blue" translatesAutoresizingMaskIntoConstraints="NO" id="rvQ-51-cvR">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="Xek-aT-YvU" firstAttribute="bottom" secondItem="rvQ-51-cvR" secondAttribute="bottom" id="AMX-4W-YIQ"/>
-                            <constraint firstItem="rvQ-51-cvR" firstAttribute="top" secondItem="Xek-aT-YvU" secondAttribute="top" id="Ewa-ri-07Y"/>
-                            <constraint firstItem="Xek-aT-YvU" firstAttribute="trailing" secondItem="rvQ-51-cvR" secondAttribute="trailing" id="PiT-0y-H3M"/>
-                            <constraint firstItem="rvQ-51-cvR" firstAttribute="leading" secondItem="Xek-aT-YvU" secondAttribute="leading" id="ufk-Mk-KHd"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="Xek-aT-YvU"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oEK-KU-Yjx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1251" y="1540"/>
+            <point key="canvasLocation" x="460.86956521739131" y="1539.5089285714284"/>
         </scene>
     </scenes>
     <resources>
-        <image name="OrangeGradientBackground" width="1920" height="1080"/>
         <image name="WebCamMapIcon1024" width="1024" height="1024"/>
         <image name="camera" catalog="system" width="128" height="96"/>
-        <image name="gradient-background-blue" width="2400" height="2000"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="video" catalog="system" width="128" height="83"/>
     </resources>
