@@ -69,7 +69,7 @@
                                 <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                             <containerView opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zgy-N2-v3q">
-                                <rect key="frame" x="25" y="595" width="0.0" height="724"/>
+                                <rect key="frame" x="25" y="113" width="364" height="724"/>
                                 <connections>
                                     <segue destination="6VS-0x-V1v" kind="embed" id="3XY-2X-BPP"/>
                                 </connections>
@@ -159,8 +159,8 @@
         <!--Tutorial Page View Controller-->
         <scene sceneID="tSP-SJ-DYo">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="p3r-6M-LF1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <pageViewController storyboardIdentifier="TutorialPageViewController" autoresizesArchivedViewToFullSize="NO" modalTransitionStyle="flipHorizontal" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="6VS-0x-V1v" customClass="TutorialPageViewController" customModule="WebCamMap" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p3r-6M-LF1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-9" y="937"/>
         </scene>
@@ -173,21 +173,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="-50" translatesAutoresizingMaskIntoConstraints="NO" id="3KI-rh-Iaf">
-                                <rect key="frame" x="70.5" y="310" width="273.5" height="276"/>
+                                <rect key="frame" x="74" y="313.5" width="266" height="269.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WebCamMapIcon1024" translatesAutoresizingMaskIntoConstraints="NO" id="ghn-us-BA3">
-                                        <rect key="frame" x="7.5" y="0.0" width="266" height="266"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="266" height="266"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="266" id="8ii-VR-fnl"/>
                                             <constraint firstAttribute="width" constant="266" id="Qkc-ao-epZ"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Welcome!    " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RvO-ir-Oks">
-                                        <rect key="frame" x="0.0" y="216" width="273.5" height="60"/>
-                                        <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="45"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WebCamMap" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RvO-ir-Oks">
+                                        <rect key="frame" x="8.5" y="216" width="257.5" height="53.5"/>
+                                        <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="40"/>
                                         <color key="textColor" red="0.86514514590000002" green="0.47006700576664856" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                         <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="0.0" height="1"/>
                                     </label>
                                 </subviews>
                             </stackView>
@@ -346,30 +347,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="-50" translatesAutoresizingMaskIntoConstraints="NO" id="cFa-Oj-9K6">
-                                <rect key="frame" x="58" y="310" width="298.5" height="276"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="-50" translatesAutoresizingMaskIntoConstraints="NO" id="XGK-9f-kWz">
+                                <rect key="frame" x="74" y="313.5" width="266" height="269.5"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WebCamMapIcon1024" translatesAutoresizingMaskIntoConstraints="NO" id="lMX-le-yfP">
-                                        <rect key="frame" x="32.5" y="0.0" width="266" height="266"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WebCamMapIcon1024" translatesAutoresizingMaskIntoConstraints="NO" id="Ewq-WU-mdG">
+                                        <rect key="frame" x="0.0" y="0.0" width="266" height="266"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="266" id="B9C-AY-nv3"/>
-                                            <constraint firstAttribute="width" constant="266" id="ob0-G8-8FM"/>
+                                            <constraint firstAttribute="width" constant="266" id="4PJ-Ev-bK1"/>
+                                            <constraint firstAttribute="height" constant="266" id="lVJ-ks-qsd"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enjoy the app!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNx-LI-uEX">
-                                        <rect key="frame" x="0.0" y="216" width="298.5" height="60"/>
-                                        <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="45"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enjoy the app!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Qx-nl-reI">
+                                        <rect key="frame" x="0.5" y="216" width="265.5" height="53.5"/>
+                                        <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="40"/>
                                         <color key="textColor" red="0.86514514590000002" green="0.47006700579999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                         <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="0.0" height="1"/>
                                     </label>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="cFa-Oj-9K6" firstAttribute="centerY" secondItem="mXh-hd-kFW" secondAttribute="centerY" id="IWS-E9-N8j"/>
-                            <constraint firstItem="cFa-Oj-9K6" firstAttribute="centerX" secondItem="mXh-hd-kFW" secondAttribute="centerX" id="aec-uB-iuv"/>
+                            <constraint firstItem="XGK-9f-kWz" firstAttribute="centerX" secondItem="mXh-hd-kFW" secondAttribute="centerX" id="2sl-dl-tfR"/>
+                            <constraint firstItem="XGK-9f-kWz" firstAttribute="centerY" secondItem="mXh-hd-kFW" secondAttribute="centerY" id="IBi-ov-JpV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bvn-HB-jxO"/>
                     </view>
