@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import CoreData
 
-class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UIPopoverPresentationControllerDelegate, UISearchControllerDelegate, UISearchBarDelegate {    
+class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UIPopoverPresentationControllerDelegate, UISearchBarDelegate {    
     
     // ContainerView for TutorialPageViewController.
     @IBOutlet weak var containerView: UIView!
@@ -53,7 +53,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     var webCamInfo = WebCamInfo()
     
     @IBAction func searchButton(_ sender: Any) {
-        let searchController = UISearchController()
+        let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
         present(searchController, animated: true, completion: nil)
     }

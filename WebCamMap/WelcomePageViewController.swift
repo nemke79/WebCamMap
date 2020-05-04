@@ -73,7 +73,7 @@ class WelcomePageViewController: UIPageViewController, UIPageViewControllerDeleg
         return pages[nextIndex]
     }
     
-    // Next two methods needed for page control - 3 dots.
+    // Next two methods needed for page control - 2 dots.
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
         setupPageControl()
         return self.pages.count
