@@ -1,5 +1,5 @@
 //
-//  TutorialPageViewController.swift
+//  WelcomePageViewController.swift
 //  WebCamMap
 //
 //  Created by Nemanja Petrovic on 01/05/2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TutorialPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+class WelcomePageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
     // To prepend a new transition before an old one is not completed, I added a transitioning flag to avoid error message "Unbalanced calls to begin/end appearance transitions for".
     var isTransitioning = false
@@ -24,11 +24,11 @@ class TutorialPageViewController: UIPageViewController, UIPageViewControllerDele
             setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
     }
-    
+
     fileprivate lazy var pages: [UIViewController] = {
         return [
-            self.getViewController(withIdentifier: "TutorialFirstPageController"),
-            self.getViewController(withIdentifier: "TutorialSecondPageController")
+            self.getViewController(withIdentifier: "FirstPageController"),
+            self.getViewController(withIdentifier: "SecondPageController")
         ]
     }()
     

@@ -156,10 +156,10 @@
             </objects>
             <point key="canvasLocation" x="-78.260869565217391" y="75.669642857142847"/>
         </scene>
-        <!--Tutorial Page View Controller-->
+        <!--Welcome Page View Controller-->
         <scene sceneID="tSP-SJ-DYo">
             <objects>
-                <pageViewController storyboardIdentifier="TutorialPageViewController" autoresizesArchivedViewToFullSize="NO" modalTransitionStyle="flipHorizontal" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="6VS-0x-V1v" customClass="TutorialPageViewController" customModule="WebCamMap" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="WelcomePageViewController" autoresizesArchivedViewToFullSize="NO" modalTransitionStyle="flipHorizontal" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="6VS-0x-V1v" customClass="WelcomePageViewController" customModule="WebCamMap" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p3r-6M-LF1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-9" y="937"/>
@@ -167,7 +167,7 @@
         <!--View Controller-->
         <scene sceneID="Tax-Kx-3pB">
             <objects>
-                <viewController restorationIdentifier="TutorialFirstPageControllerR" storyboardIdentifier="TutorialFirstPageController" id="Vto-hx-Zd1" sceneMemberID="viewController">
+                <viewController restorationIdentifier="FirstPageControllerR" storyboardIdentifier="FirstPageController" id="Vto-hx-Zd1" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Dr-rh-ioH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -177,6 +177,7 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WebCamMapIcon1024" translatesAutoresizingMaskIntoConstraints="NO" id="ghn-us-BA3">
                                         <rect key="frame" x="0.0" y="0.0" width="266" height="266"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="266" id="8ii-VR-fnl"/>
                                             <constraint firstAttribute="width" constant="266" id="Qkc-ao-epZ"/>
@@ -342,7 +343,7 @@
         <!--View Controller-->
         <scene sceneID="aKq-m2-3D3">
             <objects>
-                <viewController restorationIdentifier="TutorialSecondPageControllerR" storyboardIdentifier="TutorialSecondPageController" id="Dym-Za-Bea" sceneMemberID="viewController">
+                <viewController restorationIdentifier="SecondPageControllerR" storyboardIdentifier="SecondPageController" id="Dym-Za-Bea" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mXh-hd-kFW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -352,6 +353,7 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WebCamMapIcon1024" translatesAutoresizingMaskIntoConstraints="NO" id="Ewq-WU-mdG">
                                         <rect key="frame" x="0.0" y="0.0" width="266" height="266"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="266" id="4PJ-Ev-bK1"/>
                                             <constraint firstAttribute="height" constant="266" id="lVJ-ks-qsd"/>

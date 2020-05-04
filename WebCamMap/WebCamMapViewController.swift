@@ -30,7 +30,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     
     private var favouriteCities: [FavouriteCities]?
     
-    private var tutorialScreen = TutorialPageViewController()
+    private var tutorialScreen = WelcomePageViewController()
     
     let cityCell = CityNameCell()
     
