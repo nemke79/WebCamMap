@@ -145,7 +145,8 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                 
                 //Zooming.
                 let coordinate = CLLocationCoordinate2DMake(latitude!, longitude!)
-                let viewRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 40000, longitudinalMeters: 40000)
+                self.addAnotation(with: coordinate)
+                let viewRegion = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
                 self.mapView.setRegion(viewRegion, animated: false)
             }
         }
@@ -258,14 +259,9 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-    // Gesture for adding pins to map
-    @objc func tapGestureHandler(tgr: UITapGestureRecognizer)
-    {
-        let touchPoint = tgr.location(in: mapView)
-        let touchMapCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
-        
+    func addAnotation(with coordinate: CLLocationCoordinate2D) {
         let annotation = MKPointAnnotation()
-        annotation.coordinate = touchMapCoordinate
+        annotation.coordinate = coordinate
         mapView.addAnnotation(annotation)
         
         arrayOfAnotations.append(annotation)
@@ -304,6 +300,15 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
             }
         }
+    }
+    
+    // Gesture for adding pins to map
+    @objc func tapGestureHandler(tgr: UITapGestureRecognizer)
+    {
+        let touchPoint = tgr.location(in: mapView)
+        let touchMapCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
+        
+        addAnotation(with: touchMapCoordinate)
     }
     
     private var font: UIFont {
@@ -369,7 +374,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         baseURL = "https://api.windy.com/api/webcams/v2/list/nearby=\(arrayOfPinsCLLocations[indexPath.row].coordinate.latitude),\(arrayOfPinsCLLocations[indexPath.row].coordinate.longitude),20/orderby=distance/limit=50?show=webcams:player,image&key=BWCdRgohrnZPoVqrPYWcyU7N1sbR4ko4"
         
-        let viewRegion = MKCoordinateRegion(center: arrayOfPinsCLLocations[indexPath.row].coordinate, latitudinalMeters: 900000, longitudinalMeters: 900000)
+        let viewRegion = MKCoordinateRegion(center: arrayOfPinsCLLocations[indexPath.row].coordinate, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
         mapView.setRegion(viewRegion, animated: false)
         
         spinner?.startAnimating()
