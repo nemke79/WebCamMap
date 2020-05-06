@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="owd-9e-bN3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -121,7 +121,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="aH2-zm-0gg">
                             <connections>
-                                <action selector="searchButton:" destination="BYZ-38-t0r" id="nO4-pN-f47"/>
+                                <action selector="searchButtonClicked:" destination="BYZ-38-t0r" id="uVz-gM-Thn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -130,6 +130,7 @@
                         <outlet property="closeButton" destination="b4u-Ei-8JF" id="uUd-Qq-mEl"/>
                         <outlet property="containerView" destination="Zgy-N2-v3q" id="hUe-Rh-c9Q"/>
                         <outlet property="mapView" destination="zef-T7-x9o" id="f35-a4-dyY"/>
+                        <outlet property="searchButton" destination="aH2-zm-0gg" id="5oj-lV-Dea"/>
                         <outlet property="spinner" destination="adg-lT-OgH" id="mW5-Pj-k0v"/>
                         <segue destination="A3z-qF-A62" kind="show" identifier="showWebCamInfo" id="DfI-2J-QAN"/>
                     </connections>

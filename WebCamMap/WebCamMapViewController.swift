@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import CoreData
 
-class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UIPopoverPresentationControllerDelegate, UISearchBarDelegate {    
+class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UIPopoverPresentationControllerDelegate, UISearchBarDelegate, NetworkSpeedProviderDelegate {
     
     // ContainerView for TutorialPageViewController.
     @IBOutlet weak var containerView: UIView!
@@ -52,7 +52,59 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var webCamInfo = WebCamInfo()
     
-    @IBAction func searchButton(_ sender: Any) {
+    var activityIndicator = UIActivityIndicatorView()
+    
+    var tgr = UITapGestureRecognizer()
+    
+    @IBOutlet weak var searchButton: UIBarButtonItem!
+    
+    func callWhileSpeedChange(networkStatus: NetworkStatus) {
+        switch networkStatus {
+        case .poor:
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: "Web Cams Info", message: "You have network problem. User interaction with the app is limited. Please try again later.", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+                    return
+                }))
+                self.present(alert, animated: true, completion: nil)
+                
+                if self.activityIndicator.isAnimating {
+                    self.activityIndicator.stopAnimating()
+                }
+                self.citiesTableView.isUserInteractionEnabled = false
+                self.mapView.isUserInteractionEnabled = false
+                self.tgr.isEnabled = false
+                self.searchButton.isEnabled = true
+            }
+        case .good:
+            DispatchQueue.main.async {
+                self.citiesTableView.isUserInteractionEnabled = true
+                self.mapView.isUserInteractionEnabled = true
+                self.tgr.isEnabled = true
+                self.searchButton.isEnabled = true
+            }
+        case .disConnected:
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: "Web Cams Info", message: "You have network problem. User interaction with the app is limited. Please try again later.", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+                    return
+                }))
+                self.present(alert, animated: true, completion: nil)
+                
+                if self.activityIndicator.isAnimating {
+                    self.activityIndicator.stopAnimating()
+                }
+                self.citiesTableView.isUserInteractionEnabled = false
+                self.mapView.isUserInteractionEnabled = false
+                self.tgr.isEnabled = false
+                self.searchButton.isEnabled = true
+            }
+        }
+    }
+    
+    @IBAction func searchButtonClicked(_ sender: Any) {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
         present(searchController, animated: true, completion: nil)
@@ -61,8 +113,9 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         citiesTableView.isUserInteractionEnabled = false
         mapView.isUserInteractionEnabled = false
+        searchButton.isEnabled = false
         
-        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator = UIActivityIndicatorView()
         activityIndicator.center = mapView.center
         activityIndicator.hidesWhenStopped = true
         activityIndicator.color = .darkGray
@@ -81,10 +134,12 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let activeSearch = MKLocalSearch(request: searchRequest)
         activeSearch.start { (response, error) in
-            activityIndicator.stopAnimating()
-            self.citiesTableView.isUserInteractionEnabled = true
-            self.mapView.isUserInteractionEnabled = true
             if response != nil {
+                self.activityIndicator.stopAnimating()
+                self.citiesTableView.isUserInteractionEnabled = true
+                self.mapView.isUserInteractionEnabled = true
+                self.searchButton.isEnabled = true
+                
                 let latitude = response?.boundingRegion.center.latitude
                 let longitude = response?.boundingRegion.center.longitude
                 
@@ -108,7 +163,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     // Adding outlet for map
     @IBOutlet weak var mapView: MKMapView! {
         didSet {
-            let tgr = UITapGestureRecognizer(target: self, action: #selector(self.tapGestureHandler))
+            tgr = UITapGestureRecognizer(target: self, action: #selector(self.tapGestureHandler))
             tgr.delegate = self
             mapView.addGestureRecognizer(tgr)
             
@@ -140,14 +195,11 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         
         spinner?.stopAnimating()
         
-        if !Reachability.isConnectedToNetwork() {
-            let alert = UIAlertController(title: "Web Cams Info", message: "You have network problem. Please try again later.", preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
-                return
-            }))
-            self.present(alert, animated: true, completion: nil)
-        }
+        let test = NetworkSpeedTest()
+        
+        test.delegate = self
+        test.networkSpeedTestStop()
+        test.networkSpeedTestStart(UrlForTestSpeed: "https://api.windy.com")
         
         citiesTableView.dataSource = self
         citiesTableView.delegate = self
@@ -204,62 +256,51 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.citiesTableView.scrollToRow(at: indexPath as IndexPath, at: .bottom, animated: true)
             }
         }
-        
     }
-    
-    
-    
     
     // Gesture for adding pins to map
     @objc func tapGestureHandler(tgr: UITapGestureRecognizer)
     {
-        if !Reachability.isConnectedToNetwork() {
-            let alert = UIAlertController(title: "Web Cams Info", message: "You have network problem. Please try again later.", preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
-                return
-            }))
-            self.present(alert, animated: true, completion: nil)
-        }
-        else {
-            let touchPoint = tgr.location(in: mapView)
-            let touchMapCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
-            
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = touchMapCoordinate
-            mapView.addAnnotation(annotation)
-            
-            arrayOfAnotations.append(annotation)
-            
-            let location = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
-            
-            let geocoder = CLGeocoder()
-            geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
-                // Process Response
-                if let error = error {
-                    print("Unable to Reverse Geocode Location (\(error.localizedDescription))")
-                    DispatchQueue.main.async {
-                        let alert = UIAlertController(title: "Web Cams Info", message: "We don't have enough information about this location, please choose another location.", preferredStyle: .alert)
-                        
-                        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
-                            return
-                        }))
-                        self.present(alert, animated: true, completion: nil)
-                    }
-                } else {
-                    if let placemarks = placemarks, let placemark = placemarks.first {
+        let touchPoint = tgr.location(in: mapView)
+        let touchMapCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = touchMapCoordinate
+        mapView.addAnnotation(annotation)
+        
+        arrayOfAnotations.append(annotation)
+        
+        let location = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
+        
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            // Process Response
+            if let error = error {
+                print("Unable to Reverse Geocode Location (\(error.localizedDescription))")
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Web Cams Info", message: "We don't have enough information about this location, please choose another location.", preferredStyle: .alert)
+                    
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+                        return
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            } else {
+                if let placemarks = placemarks, let placemark = placemarks.first {
+                    if placemark.country != nil {
                         self.arrayOfPinsNames.append("\(placemark.locality ?? placemark.name ?? placemark.country ?? placemark.ocean ?? "Unknown location"), \(placemark.country ?? "")")
-                        
-                        self.arrayOfPinsCLLocations.append(placemark.location!)
-                        
-                        self.arrayOfFavourites.append(false)
-                        
-                        self.citiesTableView.reloadData()
-                        
-                        let indexPath = NSIndexPath(row: self.arrayOfPinsNames.count-1, section: 0)
-                        self.citiesTableView.scrollToRow(at: indexPath as IndexPath, at: .bottom, animated: true)
+                    } else {
+                        self.arrayOfPinsNames.append("\(placemark.locality ?? placemark.name ?? placemark.country ?? placemark.ocean ?? "Unknown location") \(placemark.country ?? "")")
                     }
                     
+                    self.arrayOfPinsCLLocations.append(placemark.location!)
+                    
+                    self.arrayOfFavourites.append(false)
+                    
+                    self.citiesTableView.reloadData()
+                    
+                    let indexPath = NSIndexPath(row: self.arrayOfPinsNames.count-1, section: 0)
+                    self.citiesTableView.scrollToRow(at: indexPath as IndexPath, at: .bottom, animated: true)
                 }
             }
         }
@@ -336,6 +377,8 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // Disable user interaction while spinner is active.
         citiesTableView.isUserInteractionEnabled = false
+        mapView.isUserInteractionEnabled = false
+        searchButton.isEnabled = false
         
         requestWebCam{ (data, success) in
             
@@ -418,11 +461,13 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                 // Enable user interaction after fetching Data is over.
                 DispatchQueue.main.async {
                     self.citiesTableView.isUserInteractionEnabled = true
+                    self.mapView.isUserInteractionEnabled = true
+                    self.searchButton.isEnabled = true
                 }
             } else {
                 DispatchQueue.main.async {
                     self.spinner?.stopAnimating()
-                    let alert = UIAlertController(title: "Web Cams Info", message: "You have network problem. Please try again later.", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Web Cams Info", message: "You have network problem. User interaction with the app is limited. Please try again later.", preferredStyle: .alert)
                     
                     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
                         return
@@ -458,16 +503,13 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                 
                 let image = UIImage(data: data! as Data)
                 
-                DispatchQueue.main.async {
-                    
-                    self.webCamInfo.link = dayDict["embed"] as! String
-                    
-                    self.webCamInfo.image = image!
-                    
-                    self.webCamInfo.title = jsonWebCam["title"] as! String
-                    
-                    self.webCamsInfo.append(self.webCamInfo)
-                }
+                self.webCamInfo.link = dayDict["embed"] as! String
+                
+                self.webCamInfo.image = image!
+                
+                self.webCamInfo.title = jsonWebCam["title"] as! String
+                
+                self.webCamsInfo.append(self.webCamInfo)
             }
         } catch let error as NSError {
             print("Decoding error \(error.localizedDescription)")

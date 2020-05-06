@@ -14,7 +14,8 @@
 		DF01E4862434C29F005F9117 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF01E4842434C29F005F9117 /* LaunchScreen.storyboard */; };
 		DF01E4A02434C3A6005F9117 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF01E49F2434C3A6005F9117 /* Main.storyboard */; };
 		DF01E4A42437435C005F9117 /* WebCamInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF01E4A32437435C005F9117 /* WebCamInfoTableViewController.swift */; };
-		DF21EDE92450530C00860E5D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF21EDE82450530C00860E5D /* Reachability.swift */; };
+		DF23A1BA2461CA660031E141 /* NetworkSpeedTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF23A1B92461CA660031E141 /* NetworkSpeedTest.swift */; };
+		DF23A1BC2461CBC90031E141 /* NetworkSpeedProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF23A1BB2461CBC90031E141 /* NetworkSpeedProviderDelegate.swift */; };
 		DF6C45DE24473B390065C1ED /* WebCamMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6C45DD24473B390065C1ED /* WebCamMapTests.swift */; };
 		DF6C45E8244F25040065C1ED /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6C45E7244F25040065C1ED /* InfoViewController.swift */; };
 		DF8E910F243CC39C00CD2C69 /* WebCamInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8E910E243CC39C00CD2C69 /* WebCamInfo.swift */; };
@@ -46,7 +47,8 @@
 		DF01E4872434C29F005F9117 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF01E49F2434C3A6005F9117 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DF01E4A32437435C005F9117 /* WebCamInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCamInfoTableViewController.swift; sourceTree = "<group>"; };
-		DF21EDE82450530C00860E5D /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		DF23A1B92461CA660031E141 /* NetworkSpeedTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSpeedTest.swift; sourceTree = "<group>"; };
+		DF23A1BB2461CBC90031E141 /* NetworkSpeedProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSpeedProviderDelegate.swift; sourceTree = "<group>"; };
 		DF6C45DB24473B390065C1ED /* WebCamMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebCamMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF6C45DD24473B390065C1ED /* WebCamMapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCamMapTests.swift; sourceTree = "<group>"; };
 		DF6C45DF24473B390065C1ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -101,8 +103,9 @@
 		DF01E4752434C29A005F9117 /* WebCamMap */ = {
 			isa = PBXGroup;
 			children = (
+				DF23A1B92461CA660031E141 /* NetworkSpeedTest.swift */,
+				DF23A1BB2461CBC90031E141 /* NetworkSpeedProviderDelegate.swift */,
 				DFABF2282437A0520019B04E /* WebCamMapViewController.swift */,
-				DF21EDE82450530C00860E5D /* Reachability.swift */,
 				DF8E910E243CC39C00CD2C69 /* WebCamInfo.swift */,
 				DFB057022441CFE300F1F900 /* FavouriteCities.swift */,
 				DF981053243F90C900953E92 /* CityNameCell.swift */,
@@ -239,6 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF23A1BC2461CBC90031E141 /* NetworkSpeedProviderDelegate.swift in Sources */,
 				DF01E4772434C29A005F9117 /* AppDelegate.swift in Sources */,
 				DF01E4792434C29A005F9117 /* SceneDelegate.swift in Sources */,
 				DF9A0AA4245C2D7E000D4A5F /* WelcomePageViewController.swift in Sources */,
@@ -247,9 +251,9 @@
 				DF01E4A42437435C005F9117 /* WebCamInfoTableViewController.swift in Sources */,
 				DFABF2292437A0520019B04E /* WebCamMapViewController.swift in Sources */,
 				DF8E910F243CC39C00CD2C69 /* WebCamInfo.swift in Sources */,
+				DF23A1BA2461CA660031E141 /* NetworkSpeedTest.swift in Sources */,
 				DF6C45E8244F25040065C1ED /* InfoViewController.swift in Sources */,
 				DFB057032441CFE300F1F900 /* FavouriteCities.swift in Sources */,
-				DF21EDE92450530C00860E5D /* Reachability.swift in Sources */,
 				DF01E4812434C29A005F9117 /* WebCamMap.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
