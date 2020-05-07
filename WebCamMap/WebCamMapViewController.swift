@@ -148,6 +148,11 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.addAnotation(with: coordinate)
                 let viewRegion = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
                 self.mapView.setRegion(viewRegion, animated: false)
+            } else if response == nil {
+                self.activityIndicator.stopAnimating()
+                self.citiesTableView.isUserInteractionEnabled = true
+                self.mapView.isUserInteractionEnabled = true
+                self.searchButton.isEnabled = true
             }
         }
     }
