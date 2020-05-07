@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import CoreData
+import AMPopTip
 
 class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UIPopoverPresentationControllerDelegate, UISearchBarDelegate, NetworkSpeedProviderDelegate {
     
