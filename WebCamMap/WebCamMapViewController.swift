@@ -54,8 +54,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         
         popTip3.shouldDismissOnTap = false
         popTip3.shouldDismissOnTapOutside = false
-        popTip3.bubbleColor = #colorLiteral(red: 1, green: 0.764875771, blue: 0.2167999077, alpha: 1)
-        popTip3.textColor = .black
+        popTip3.bubbleColor = .darkGray
         popTip3.entranceAnimation = .transition
         popTip3.actionAnimation = .bounce(2)
         popTip3.edgeMargin = 10
