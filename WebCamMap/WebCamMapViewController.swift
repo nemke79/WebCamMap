@@ -21,12 +21,13 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBOutlet weak var searchButton: UIBarButtonItem!
     
-    let searchController = UISearchController(searchResultsController: nil)
+    var searchController = UISearchController(searchResultsController: nil)
     
     // Using popTips for tutorial when close Button on Welcome screen is closed.
     var popTip = PopTip()
     var popTip2 = PopTip()
     var popTip3 = PopTip()
+    var popTip4 = PopTip()
     
     @IBAction func closeButtonPressed(_ sender: UIButton) {
         sender.removeFromSuperview()
@@ -59,14 +60,25 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         popTip3.actionAnimation = .bounce(2)
         popTip3.edgeMargin = 10
         
-        popTip.show(text: "Welcome! Choose desired location on the map and tap on it. Location will be then automatically added to the list below the map.", direction: .none, maxWidth: 200, in: mapView, from: CGRect(x: 0, y: 0,width: 0,height: 0), duration: 5)
+        popTip4.shouldDismissOnTap = false
+        popTip4.shouldDismissOnTapOutside = false
+        popTip4.bubbleColor = .gray
+        popTip4.entranceAnimation = .transition
+        popTip4.actionAnimation = .bounce(2)
+        popTip4.edgeMargin = 10
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
-            self.popTip2.show(text: "You can also search for the location by provided search button, and searched location will be automatically added to the list below the map.", direction: .none, maxWidth: 200, in: self.mapView, from: self.searchController.searchBar.frame, duration: 5)
+        popTip.show(text: "Welcome! Choose desired location on the map and tap on it. Location will be then automatically added to the list below the map.", direction: .none, maxWidth: 200, in: mapView, from: CGRect(x: 0, y: 0,width: 0,height: 0), duration: 6)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 6.5) {
+            self.popTip2.show(text: "You can also search for the location by provided search button, and searched location will be automatically added to the list below the map.", direction: .none, maxWidth: 200, in: self.mapView, from: self.searchController.searchBar.frame, duration: 6)
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 11) {
-            self.popTip3.show(text: "Tap on the location in the list below the map, and if there are any webcams nearby, they will be shown to you.", direction: .none, maxWidth: 200, in: self.citiesTableView, from: self.citiesTableView.topAnchor.accessibilityFrame, duration: 5)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 13) {
+            self.popTip3.show(text: "Tap on the location in the list below the map, and if there are any webcams nearby, they will be shown to you.", direction: .none, maxWidth: 200, in: self.citiesTableView, from: self.citiesTableView.topAnchor.accessibilityFrame, duration: 6)
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 19.5) {
+            self.popTip4.show(text: "Tap on the camera image which is positioned on the right of every location in the list to add desired location to favourites.", direction: .none, maxWidth: 200, in: self.citiesTableView, from: self.citiesTableView.topAnchor.accessibilityFrame, duration: 6)
         }
     }
     
@@ -145,6 +157,9 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func searchButtonClicked(_ sender: Any) {
+        //Reset the search
+        searchController = UISearchController(searchResultsController: nil)
+        
         searchController.searchBar.delegate = self
         present(searchController, animated: true, completion: nil)
     }
