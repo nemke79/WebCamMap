@@ -21,7 +21,6 @@ class WebCameraLinkViewController: UIViewController, WKUIDelegate, WKNavigationD
     
     var newView: WKWebView!
     
-    
     // MARK: ViewController lifecycle methods.
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,34 +41,22 @@ class WebCameraLinkViewController: UIViewController, WKUIDelegate, WKNavigationD
         }
     }
     
-    // View needs to reload when coming back from another app, else we will have messed up view, so we use NSNotification.
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(willEnterForeground(_:)),
-            name: UIApplication.willEnterForegroundNotification,
-            object: nil)
-    }
-    
-    @objc func willEnterForeground(_ notification: NSNotification) {
-        webView.reload()
-    }
-    
     deinit {
-        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress))
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        NotificationCenter.default.removeObserver(self)
+        webView?.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress))
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "estimatedProgress" {
             progressView.progress = Float(webView.estimatedProgress)
+        }
+    }
+    
+    //When loading webview and scren is rotating at the same time avoid messed view.
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        if progressView.isHidden == false {
+            webView?.reload()
         }
     }
     
@@ -87,7 +74,9 @@ class WebCameraLinkViewController: UIViewController, WKUIDelegate, WKNavigationD
     
     // This handles target=_blank links by opening them in the new view.
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
-        if navigationAction.targetFrame == nil {
+        
+        //Need check for navigationAction.request.url! != webCamURL to avoid white screen and overlapping views.
+        if navigationAction.targetFrame == nil, navigationAction.request.url! != webCamURL {
             newView = WKWebView.init(frame: webView.frame, configuration: configuration)
             
             newView.customUserAgent = webView.customUserAgent
@@ -113,7 +102,7 @@ class WebCameraLinkViewController: UIViewController, WKUIDelegate, WKNavigationD
     }
     
     
-    // Open long tapped event on short tap to avoid error, also open mailapp when user taps on mail icon.
+    // Open long tapped event on short tap to avoid error, open links, also open mailapp when user taps on mail icon.
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: ((WKNavigationActionPolicy) -> Void)) {
         let url = navigationAction.request.url?.absoluteString
         let urlElements = url?.components(separatedBy: ":") ?? []
@@ -126,8 +115,7 @@ class WebCameraLinkViewController: UIViewController, WKUIDelegate, WKNavigationD
         default:
             switch navigationAction.navigationType {
             case .linkActivated:
-                
-                UIApplication.shared.open(navigationAction.request.url!, options: [:], completionHandler: nil)
+                webView.load(URLRequest(url: navigationAction.request.url!))
                 decisionHandler(.cancel)
                 return
             default:
