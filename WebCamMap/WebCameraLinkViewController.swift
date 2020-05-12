@@ -9,8 +9,8 @@
 import UIKit
 import WebKit
 
-class WebCameraLinkViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
-    
+class WebCameraLinkViewController: UIViewController, WKUIDelegate, WKNavigationDelegate
+{
     @IBOutlet weak var webView: WKWebView!
     
     var webCamURL: URL!
@@ -41,8 +41,29 @@ class WebCameraLinkViewController: UIViewController, WKUIDelegate, WKNavigationD
         }
     }
     
+    // view needs to reload when coming back from another app, else we will have messed up view, so we use NSNotification.
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(willEnterForeground(_:)),
+            name: UIApplication.willEnterForegroundNotification,
+            object: nil)
+    }
+    
+    @objc func willEnterForeground(_ notification: NSNotification) {
+        webView.reload()
+    }
+    
     deinit {
         webView?.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress))
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -59,7 +80,6 @@ class WebCameraLinkViewController: UIViewController, WKUIDelegate, WKNavigationD
             webView?.reload()
         }
     }
-    
     
     // MARK: WebView methods.
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -100,7 +120,6 @@ class WebCameraLinkViewController: UIViewController, WKUIDelegate, WKNavigationD
         webView.removeFromSuperview()
         newView = nil
     }
-    
     
     // Open long tapped event on short tap to avoid error, open links, also open mailapp when user taps on mail icon.
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: ((WKNavigationActionPolicy) -> Void)) {

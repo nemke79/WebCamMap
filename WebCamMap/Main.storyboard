@@ -334,7 +334,7 @@
                     <connections>
                         <outlet property="progressView" destination="vaB-92-JJI" id="P6q-QC-Z3a"/>
                         <outlet property="viewForBackgroundWhileLoading" destination="0d6-9s-I0G" id="4Ay-aa-o54"/>
-                        <outlet property="webView" destination="ltU-cj-PNv" id="ioO-tU-8vn"/>
+                        <outlet property="webView" destination="ltU-cj-PNv" id="Ga8-GE-4Tx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cya-M1-lCL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
