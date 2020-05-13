@@ -29,6 +29,36 @@ class FavouriteCities: NSManagedObject {
         }
     }
     
+    class func addDraggedFavouriteCity(matching sourceItem: Int, to destinationItem: Int, into context: NSManagedObjectContext)
+    {
+        let request: NSFetchRequest<FavouriteCities> = FavouriteCities.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: true)]
+        let favouriteCity = try? context.fetch(request)
+        if favouriteCity?.count != nil {
+            let sourceItemCreatedDate = favouriteCity![sourceItem].dateCreated
+            favouriteCity![sourceItem].dateCreated = favouriteCity![destinationItem].dateCreated
+            
+            if destinationItem < sourceItem {
+                for item in destinationItem..<sourceItem {
+                    if (item + 1) != sourceItem {
+                        favouriteCity![item].dateCreated = favouriteCity![item + 1].dateCreated
+                    } else {
+                        favouriteCity![item].dateCreated = sourceItemCreatedDate
+                    }
+                }
+            } else if destinationItem > sourceItem {
+                for item in stride(from: destinationItem, to: sourceItem, by: -1)
+                {
+                    if (item - 1) == sourceItem {
+                        favouriteCity![item].dateCreated = sourceItemCreatedDate
+                    } else {
+                        favouriteCity![item].dateCreated = favouriteCity![item - 1].dateCreated
+                    }
+                }
+            }
+        }
+    }
+    
     class func deleteFavouriteCity(latitude: Double, longitude: Double, into context: NSManagedObjectContext ) {
         let request: NSFetchRequest<FavouriteCities> = FavouriteCities.fetchRequest()
         

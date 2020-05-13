@@ -11,8 +11,9 @@ import MapKit
 import CoreLocation
 import CoreData
 import AMPopTip
+import MobileCoreServices
 
-class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UIPopoverPresentationControllerDelegate, UISearchBarDelegate, NetworkSpeedProviderDelegate {
+class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UIPopoverPresentationControllerDelegate, UISearchBarDelegate, NetworkSpeedProviderDelegate, UITableViewDragDelegate, UITableViewDropDelegate {
     
     // ContainerView for TutorialPageViewController.
     @IBOutlet weak var containerView: UIView!
@@ -269,6 +270,10 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         mapView.isZoomEnabled = true
         mapView.isScrollEnabled = true
         
+        citiesTableView.dragDelegate = self
+        citiesTableView.dropDelegate = self
+        citiesTableView.dragInteractionEnabled = true
+        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
@@ -367,6 +372,96 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         let touchMapCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
         
         addAnotation(with: touchMapCoordinate)
+    }
+    
+    // Use feedbackGenerator to vibrate cell on drag and drop.
+      var feedbackGenerator: UIImpactFeedbackGenerator? = nil
+    
+    //MARK: Drag/Drop methods
+    
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        if arrayOfFavourites[indexPath.row] == true {
+            
+            feedbackGenerator = UIImpactFeedbackGenerator()
+            feedbackGenerator?.prepare()
+            feedbackGenerator?.impactOccurred()
+            
+            let string = arrayOfPinsNames[indexPath.row]
+            guard let data = string.data(using: .utf8) else { return [] }
+            let itemProvider = NSItemProvider(item: data as NSData, typeIdentifier: kUTTypePlainText as String)
+            let dragItem = UIDragItem(itemProvider: itemProvider)
+            return [dragItem]
+        }
+        return []
+    }
+    
+    func tableView(_ tableView: UITableView, canHandle session: UIDropSession) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, dragPreviewParametersForRowAt indexPath: IndexPath) -> UIDragPreviewParameters? {
+        let previewParameters = UIDragPreviewParameters()
+        previewParameters.backgroundColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 0)
+        
+        return previewParameters
+    }
+
+    func tableView(_ tableView: UITableView, dropPreviewParametersForRowAt indexPath: IndexPath) -> UIDragPreviewParameters? {
+         let previewParamaters = UIDragPreviewParameters()
+               previewParamaters.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+               
+               return previewParamaters
+    }
+    
+    func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
+        return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
+        let destinationIndexPath: IndexPath
+        
+        if let indexPath = coordinator.destinationIndexPath {
+            destinationIndexPath = indexPath
+        } else {
+            // Get last index path of table view.
+            let section = citiesTableView.numberOfSections - 1
+            let row = citiesTableView.numberOfRows(inSection: section)
+            destinationIndexPath = IndexPath(row: row, section: section)
+        }
+        for item in coordinator.items {
+            if let sourceIndexPath = item.sourceIndexPath, arrayOfFavourites[sourceIndexPath.row] == true, arrayOfFavourites[destinationIndexPath.row] == true {
+                citiesTableView.performBatchUpdates({ [weak self] in
+                    
+                    feedbackGenerator?.impactOccurred()
+                    
+                    FavouriteCities.addDraggedFavouriteCity(matching: sourceIndexPath.row, to: destinationIndexPath.row, into: self!.context)
+                    try? self?.context.save()
+                    
+                    let anotattion = arrayOfAnotations[sourceIndexPath.row]
+                    let pin = arrayOfPinsNames[sourceIndexPath.row]
+                    let location = arrayOfPinsCLLocations[sourceIndexPath.row]
+                    let favourite = arrayOfFavourites[sourceIndexPath.row]
+                    
+                    citiesTableView.deleteRows(at: [sourceIndexPath], with: .fade)
+                    arrayOfAnotations.remove(at: sourceIndexPath.row)
+                    arrayOfPinsNames.remove(at: sourceIndexPath.row)
+                    arrayOfPinsCLLocations.remove(at: sourceIndexPath.row)
+                    arrayOfFavourites.remove(at: sourceIndexPath.row)
+                    
+                    citiesTableView.insertRows(at: [destinationIndexPath], with: .fade)
+                    arrayOfAnotations.insert(anotattion, at: destinationIndexPath.row)
+                    arrayOfPinsNames.insert(pin, at: destinationIndexPath.row)
+                    arrayOfPinsCLLocations.insert(location, at: destinationIndexPath.row)
+                    arrayOfFavourites.insert(favourite, at: destinationIndexPath.row)
+                    
+                    citiesTableView.reloadData()
+                })
+                
+                coordinator.drop(item.dragItem, toRowAt: destinationIndexPath)
+                
+                feedbackGenerator = nil
+            }
+        }
     }
     
     private var font: UIFont {
