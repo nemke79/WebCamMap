@@ -129,6 +129,8 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.citiesTableView.isUserInteractionEnabled = false
                 self.mapView.isUserInteractionEnabled = false
                 self.tgr.isEnabled = false
+                self.infoButton.isEnabled = false
+                self.searchButton.isEnabled = false
             }
         case .good:
             DispatchQueue.main.async {
@@ -157,6 +159,8 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.citiesTableView.isUserInteractionEnabled = false
                 self.mapView.isUserInteractionEnabled = false
                 self.tgr.isEnabled = false
+                self.infoButton.isEnabled = false
+                self.searchButton.isEnabled = false
             }
         }
     }
