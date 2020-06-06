@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="owd-9e-bN3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="owd-9e-bN3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -129,6 +129,7 @@
                         <outlet property="citiesTableView" destination="O98-Bf-jfE" id="Fra-dV-X2H"/>
                         <outlet property="closeButton" destination="b4u-Ei-8JF" id="uUd-Qq-mEl"/>
                         <outlet property="containerView" destination="Zgy-N2-v3q" id="hUe-Rh-c9Q"/>
+                        <outlet property="infoButton" destination="tVq-GC-Ko1" id="cap-kU-VRa"/>
                         <outlet property="mapView" destination="zef-T7-x9o" id="f35-a4-dyY"/>
                         <outlet property="searchButton" destination="aH2-zm-0gg" id="5oj-lV-Dea"/>
                         <outlet property="spinner" destination="adg-lT-OgH" id="mW5-Pj-k0v"/>

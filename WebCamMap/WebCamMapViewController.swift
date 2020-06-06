@@ -21,6 +21,8 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBOutlet weak var searchButton: UIBarButtonItem!
     
+    @IBOutlet weak var infoButton: UIBarButtonItem!
+    
     var searchController = UISearchController(searchResultsController: nil)
     
     // Using popTips for tutorial when close Button on Welcome screen is closed.
@@ -127,14 +129,18 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.citiesTableView.isUserInteractionEnabled = false
                 self.mapView.isUserInteractionEnabled = false
                 self.tgr.isEnabled = false
-                self.searchButton.isEnabled = true
             }
         case .good:
             DispatchQueue.main.async {
-                self.citiesTableView.isUserInteractionEnabled = true
-                self.mapView.isUserInteractionEnabled = true
-                self.tgr.isEnabled = true
-                self.searchButton.isEnabled = true
+                if(self.spinner != nil) {
+                    if(!self.spinner!.isAnimating) {
+                        self.citiesTableView.isUserInteractionEnabled = true
+                        self.mapView.isUserInteractionEnabled = true
+                        self.tgr.isEnabled = true
+                        self.searchButton.isEnabled = true
+                        self.infoButton.isEnabled = true
+                    }
+                }
             }
         case .disConnected:
             DispatchQueue.main.async {
@@ -151,7 +157,6 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.citiesTableView.isUserInteractionEnabled = false
                 self.mapView.isUserInteractionEnabled = false
                 self.tgr.isEnabled = false
-                self.searchButton.isEnabled = true
             }
         }
     }
@@ -442,6 +447,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
         citiesTableView.isUserInteractionEnabled = false
         mapView.isUserInteractionEnabled = false
         searchButton.isEnabled = false
+        infoButton.isEnabled = false
         
         requestWebCam{ (data, success) in
             
@@ -526,6 +532,7 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                     self.citiesTableView.isUserInteractionEnabled = true
                     self.mapView.isUserInteractionEnabled = true
                     self.searchButton.isEnabled = true
+                    self.infoButton.isEnabled = true
                 }
             } else {
                 DispatchQueue.main.async {
@@ -564,11 +571,12 @@ class WebCamMapViewController: UIViewController, UITableViewDelegate, UITableVie
                 let imageURL = URL(string: currentDict["thumbnail"] as! String)!
                 let data = NSData(contentsOf: imageURL)
                 
-                let image = UIImage(data: data! as Data)
+                if (data != nil) {
+                    let image = UIImage(data: data! as Data)
+                    self.webCamInfo.image = image!
+                }
                 
                 self.webCamInfo.link = dayDict["embed"] as! String
-                
-                self.webCamInfo.image = image!
                 
                 self.webCamInfo.title = jsonWebCam["title"] as! String
                 
